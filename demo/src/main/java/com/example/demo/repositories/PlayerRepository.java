@@ -3,6 +3,7 @@ package com.example.demo.repositories;
 import com.example.demo.models.Player;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +13,8 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
     List<Player> findPlayerByTeamName(@Param("teamName") String name);
 
     @Query(value = "SELECT p FROM Player p JOIN p.performance per JOIN per.game g WHERE g.id = :gameId")
-    List<Player> findPlayerByGameId(@Param("gameId") String id);
+    List<Player> findPlayerByGameId(@Param("gameId") int id);
 
     @Query(value = "SELECT p FROM Player p WHERE p.id = :id")
-    Optional<Player> findById(@Param("id") String id);
+    Optional<Player> findById(@Param("id") int id);
 }

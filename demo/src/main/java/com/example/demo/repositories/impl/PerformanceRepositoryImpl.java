@@ -4,10 +4,12 @@ import com.example.demo.models.Performance;
 import com.example.demo.repositories.PerformanceRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PerformanceRepositoryImpl implements PerformanceRepository {
     @PersistenceContext
     private EntityManager entityManager;
@@ -30,7 +32,7 @@ public class PerformanceRepositoryImpl implements PerformanceRepository {
     }
 
     @Override
-    public Optional<Performance> findById(String id) {
+    public Optional<Performance> findById(int id) {
         return performanceRepository.findById(id);
     }
 }

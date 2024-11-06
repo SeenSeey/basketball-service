@@ -4,10 +4,12 @@ import com.example.demo.models.Team;
 import com.example.demo.repositories.TeamRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class TeamRepositoryImpl implements TeamRepository {
     @PersistenceContext
     private EntityManager entityManager;
@@ -30,12 +32,12 @@ public class TeamRepositoryImpl implements TeamRepository {
     }
 
     @Override
-    public List<Team> findTeamByGameId(String id) {
+    public List<Team> findTeamByGameId(int id) {
         return teamRepository.findTeamByGameId(id);
     }
 
     @Override
-    public Optional<Team> findById(String id) {
+    public Optional<Team> findById(int id) {
         return teamRepository.findById(id);
     }
 }

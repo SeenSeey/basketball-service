@@ -4,10 +4,12 @@ import com.example.demo.models.Game;
 import com.example.demo.repositories.GameRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class GameRepositoryImpl implements GameRepository {
     @PersistenceContext
     private EntityManager entityManager;
@@ -35,7 +37,7 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public Optional<Game> findById(String id) {
+    public Optional<Game> findById(int id) {
         return gameRepository.findById(id);
     }
 }

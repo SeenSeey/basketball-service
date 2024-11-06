@@ -6,8 +6,8 @@ import java.util.Set;
 @Entity
 @Table(name = "team")
 public class Team extends BaseEntity {
-    private Set<Game> games;
-    private Set<Contract> contracts;
+    private Set<Game> game;
+    private Set<Contract> contract;
     private String name;
     private String conference;
     private int winsInSeason;
@@ -22,14 +22,14 @@ public class Team extends BaseEntity {
         this.loosesInSeason = loosesInSeason;
     }
 
-    @ManyToMany(mappedBy = "teams", targetEntity = Game.class)
-    public Set<Game> getGames() {
-        return games;
+    @ManyToMany(mappedBy = "team", targetEntity = Game.class)
+    public Set<Game> getGame() {
+        return game;
     }
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    public Set<Contract> getContracts() {
-        return contracts;
+    public Set<Contract> getContract() {
+        return contract;
     }
 
     @Column(name = "name")
@@ -52,12 +52,12 @@ public class Team extends BaseEntity {
         return loosesInSeason;
     }
 
-    public void setGames(Set<Game> games) {
-        this.games = games;
+    public void setGame(Set<Game> games) {
+        this.game = games;
     }
 
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
+    public void setContract(Set<Contract> contracts) {
+        this.contract = contracts;
     }
 
     public void setName(String name) {

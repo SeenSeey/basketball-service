@@ -6,8 +6,8 @@ import java.util.Set;
 @Entity
 @Table(name = "game")
 public class Game extends BaseEntity {
-    public Set<Performance> performances;
-    private Set<Team> teams;
+    public Set<Performance> performance;
+    private Set<Team> team;
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
@@ -21,8 +21,8 @@ public class Game extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-    public Set<Performance> getPerformances() {
-        return performances;
+    public Set<Performance> getPerformance() {
+        return performance;
     }
 
     @ManyToMany
@@ -31,8 +31,8 @@ public class Game extends BaseEntity {
             joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn(name = "team_id")
     )
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<Team> getTeam() {
+        return team;
     }
 
     @Column(name = "score_home_team")
@@ -50,12 +50,12 @@ public class Game extends BaseEntity {
         return stadiumName;
     }
 
-    public void setPerformances(Set<Performance> performances) {
-        this.performances = performances;
+    public void setPerformance(Set<Performance> performances) {
+        this.performance = performances;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setTeam(Set<Team> teams) {
+        this.team = teams;
     }
 
     public void setScoreHomeTeam(int scoreHomeTeam) {

@@ -10,8 +10,8 @@ public class Player extends BaseEntity {
     private String height;
     private String country;
     private int age;
-    private Set<Contract> contracts;
-    private Set<Performance> performances;
+    private Set<Contract> contract;
+    private Set<Performance> performance;
 
     protected Player() {}
 
@@ -23,13 +23,13 @@ public class Player extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-    public Set<Contract> getContracts() {
-        return contracts;
+    public Set<Contract> getContract() {
+        return contract;
     }
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-    public Set<Performance> getPerformances() {
-        return performances;
+    public Set<Performance> getPerformance() {
+        return performance;
     }
 
     @Column(name =  "full_name")
@@ -68,11 +68,11 @@ public class Player extends BaseEntity {
         this.age = age;
     }
 
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
+    public void setContract(Set<Contract> contracts) {
+        this.contract = contracts;
     }
 
-    public void setPerformances(Set<Performance> performances) {
-        this.performances = performances;
+    public void setPerformance(Set<Performance> performances) {
+        this.performance = performances;
     }
 }
