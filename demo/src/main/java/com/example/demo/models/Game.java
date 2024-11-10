@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import jakarta.persistence.*;
+
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -11,6 +13,7 @@ public class Game extends BaseEntity {
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
+    private Date dateOfGame;
 
     protected Game() {}
 
@@ -50,6 +53,11 @@ public class Game extends BaseEntity {
         return stadiumName;
     }
 
+    @Column(name = "date_of_game")
+    public Date getDateOfGame() {
+        return dateOfGame;
+    }
+
     public void setPerformance(Set<Performance> performances) {
         this.performance = performances;
     }
@@ -68,5 +76,9 @@ public class Game extends BaseEntity {
 
     public void setStadiumName(String stadiumName) {
         this.stadiumName = stadiumName;
+    }
+
+    public void setDateOfGame(Date dateOfGame) {
+        this.dateOfGame = dateOfGame;
     }
 }

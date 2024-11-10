@@ -1,4 +1,4 @@
-package com.example.demo.repositories;
+package com.example.demo.repository;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;

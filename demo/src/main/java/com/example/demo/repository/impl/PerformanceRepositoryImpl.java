@@ -1,7 +1,7 @@
-package com.example.demo.repositories.impl;
+package com.example.demo.repository.impl;
 
 import com.example.demo.models.Performance;
-import com.example.demo.repositories.PerformanceRepository;
+import com.example.demo.repository.PerformanceRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;

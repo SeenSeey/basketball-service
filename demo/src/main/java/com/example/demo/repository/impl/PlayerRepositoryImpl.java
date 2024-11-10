@@ -1,7 +1,7 @@
-package com.example.demo.repositories.impl;
+package com.example.demo.repository.impl;
 
 import com.example.demo.models.Player;
-import com.example.demo.repositories.PlayerRepository;
+import com.example.demo.repository.PlayerRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
