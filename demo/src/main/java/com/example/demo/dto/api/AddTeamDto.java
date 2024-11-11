@@ -1,5 +1,10 @@
 package com.example.demo.dto.api;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class AddTeamDto {
     private String name;
     private String conference;
@@ -13,18 +18,26 @@ public class AddTeamDto {
         this.loosesInSeason = loosesInSeason;
     }
 
+    @NotNull
+    @NotEmpty
+    @Size(min = 2, message = "Team`s name can`t be shorter than two characters!")
     public String getName() {
         return name;
     }
 
+    @NotNull
+    @NotEmpty
+    @Size(min = 2, message = "Conference`s name can`t be shorter than two characters!")
     public String getConference() {
         return conference;
     }
 
+    @Min(value = 0, message = "Wins count can`t be negative")
     public int getWinsInSeason() {
         return winsInSeason;
     }
 
+    @Min(value = 0, message = "Looses count can`t be negative")
     public int getLoosesInSeason() {
         return loosesInSeason;
     }

@@ -1,15 +1,18 @@
 package com.example.demo.dto.api;
 
+import jakarta.validation.constraints.*;
+
 public class AddPerformanceDto {
     private int playerId;
+    private String player;
     private int gameId;
     private int points;
     private int blocks;
     private int passes;
     private int threePointsShots;
 
-    public AddPerformanceDto(int playerId, int gameId, int points, int blocks, int passes, int threePointsShots) {
-        this.playerId = playerId;
+    public AddPerformanceDto(int id, String player, int gameId, int points, int blocks, int passes, int threePointsShots) {
+        this.player = player;
         this.gameId = gameId;
         this.points = points;
         this.blocks = blocks;
@@ -17,32 +20,42 @@ public class AddPerformanceDto {
         this.threePointsShots = threePointsShots;
     }
 
-    public int getPlayerId() {
-        return playerId;
+    @NotNull
+    @NotEmpty
+    @Size(min = 2, message = "Player`s name must be more than two characters!")
+    public String getPlayer() {
+        return player;
     }
 
     public int getGameId() {
         return gameId;
     }
 
+    @Min(value = 0, message = "Points can`t be negative")
+    @Max(value = 120)
     public int getPoints() {
         return points;
     }
 
+    @Min(value = 0, message = "Blocks can`t be negative")
+    @Max(value = 40)
     public int getBlocks() {
         return blocks;
     }
 
+    @Min(value = 0, message = "Passes can`t be negative")
+    @Max(value = 40)
     public int getPasses() {
         return passes;
     }
 
+    @Min(value = 0, message = "Three-points shots  can`t be negative")
     public int getThreePointsShots() {
         return threePointsShots;
     }
 
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public void setGameId(int gameId) {

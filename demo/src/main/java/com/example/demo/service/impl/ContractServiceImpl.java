@@ -5,6 +5,8 @@ import com.example.demo.dto.api.AddContractDto;
 import com.example.demo.models.Contract;
 import com.example.demo.repository.ContractRepository;
 import com.example.demo.service.ContractService;
+import com.example.demo.service.PlayerService;
+import com.example.demo.service.TeamService;
 import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
@@ -16,12 +18,17 @@ public class ContractServiceImpl implements ContractService {
     private final ContractRepository contractRepository;
     private final ValidationUtil validationUtil;
     private final ModelMapper modelMapper;
+    private final PlayerService playerService;
+    private final TeamService teamService;
 
     @Autowired
-    public ContractServiceImpl(ContractRepository contractRepository, ValidationUtil validationUtil, ModelMapper modelMapper) {
+    public ContractServiceImpl(ContractRepository contractRepository, ValidationUtil validationUtil,
+                               ModelMapper modelMapper, PlayerService playerService, TeamService teamService) {
         this.contractRepository = contractRepository;
         this.validationUtil = validationUtil;
         this.modelMapper = modelMapper;
+        this.playerService = playerService;
+        this.teamService = teamService;
     }
 
     @Override
@@ -34,13 +41,15 @@ public class ContractServiceImpl implements ContractService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-
-            throw new IllegalArgumentException("Illegal arguments!");
+            return;
         }
 
         Contract contract = this.modelMapper.map(contractDto, Contract.class);
 
-//        связь с Player and Team
+        contract.setPlayer(this.playerService.findByName(contractDto.getPlayer()));
+        contract.setTeam(this.teamService.findByName(contractDto.getTeam()));
+
+        this.contractRepository.save(contract);
     }
 
     @Override

@@ -1,20 +1,19 @@
 package com.example.demo.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.*;
 
 public class PerformanceDto {
     private int id;
-    private int playerId;
+    private String player;
     private int gameId;
     private int points;
     private int blocks;
     private int passes;
     private int threePointsShots;
 
-    public PerformanceDto(int id, int playerId, int gameId, int points, int blocks, int passes, int threePointsShots) {
+    public PerformanceDto(int id, String player, int gameId, int points, int blocks, int passes, int threePointsShots) {
         this.id = id;
-        this.playerId = playerId;
+        this.player = player;
         this.gameId = gameId;
         this.points = points;
         this.blocks = blocks;
@@ -26,8 +25,11 @@ public class PerformanceDto {
         return id;
     }
 
-    public int getPlayerId() {
-        return playerId;
+    @NotNull
+    @NotEmpty
+    @Size(min = 2, message = "Player`s name must be more than two characters!")
+    public String getPlayer() {
+        return player;
     }
 
     public int getGameId() {
@@ -62,8 +64,8 @@ public class PerformanceDto {
         this.id = id;
     }
 
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public void setGameId(int gameId) {

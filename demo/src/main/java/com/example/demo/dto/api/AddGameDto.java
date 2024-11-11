@@ -1,5 +1,7 @@
 package com.example.demo.dto.api;
 
+import jakarta.validation.constraints.*;
+
 import java.util.Date;
 
 public class AddGameDto {
@@ -15,18 +17,27 @@ public class AddGameDto {
         this.dateOfGame = dateOfGame;
     }
 
+    @Min(value = 0, message = "The score can`t be negative")
+    @Max(value = 200)
     public int getScoreHomeTeam() {
         return scoreHomeTeam;
     }
 
+    @Min(value = 0, message = "The score can`t be negative")
+    @Max(value = 200)
     public int getScoreVisitorTeam() {
         return scoreVisitorTeam;
     }
 
+    @NotNull
+    @NotEmpty
+    @Size(min = 2, message = "Stadium name must be more than two characters!")
     public String getStadiumName() {
         return stadiumName;
     }
 
+    @NotNull
+    @NotEmpty
     public Date getDateOfGame() {
         return dateOfGame;
     }
