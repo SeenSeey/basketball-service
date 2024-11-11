@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.api;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,25 +7,19 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
-public class ContractDto {
-    private int id;
+public class AddContractDto {
     private String player;
     private String team;
     private int salaryPerYear;
     private Date contractStartDate;
     private Date contractEndDate;
 
-    public ContractDto(int id, String player, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
-        this.id = id;
+    public AddContractDto(String player, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
         this.player = player;
         this.team = team;
         this.salaryPerYear = salaryPerYear;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @NotNull
@@ -60,10 +54,6 @@ public class ContractDto {
         return contractEndDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setPlayer(String player) {
         this.player = player;
     }
@@ -84,3 +74,4 @@ public class ContractDto {
         this.contractEndDate = contractEndDate;
     }
 }
+

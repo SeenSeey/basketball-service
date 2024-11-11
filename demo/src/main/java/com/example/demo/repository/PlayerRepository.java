@@ -14,6 +14,9 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
     @Query(value = "SELECT p FROM Player p JOIN p.performance per JOIN per.game g WHERE g.id = :gameId")
     List<Player> findPlayerByGameId(@Param("gameId") int id);
 
+    @Query(value = "SELECT p FROM Player p WHERE p.fullName = :playerFullName")
+    Optional<Player> findByName(@Param("playerFullName") String fullName);
+
     @Query(value = "SELECT p FROM Player p WHERE p.id = :id")
     Optional<Player> findById(@Param("id") int id);
 }

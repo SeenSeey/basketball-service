@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface PerformanceService {
     List<PerformanceDto> findPerformanceByPlayerFullName(String fullName);
     List<PerformanceDto> findPerformanceByNameAndDate(String fullName);
-    PerformanceDto add(AddPerformanceDto addPerformanceDto);
-    Optional<PerformanceDto> update(PerformanceDto updatePerformanceDto);
+    PerformanceDto addPerformance(AddPerformanceDto addPerformanceDto);
+    Optional<PerformanceDto> updatePerformance(PerformanceDto updatePerformanceDto);
 }

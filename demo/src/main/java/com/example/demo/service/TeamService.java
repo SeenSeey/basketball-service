@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface TeamService {
     List<TeamDto> findTeamByGameId(int id);
-    TeamDto add(AddTeamDto addTeamDto);
-    Optional<TeamDto> update(TeamDto updateDto);
+    TeamDto addTeam(AddTeamDto addTeamDto);
+    Optional<TeamDto> updateTeam(TeamDto updateDto);
 }

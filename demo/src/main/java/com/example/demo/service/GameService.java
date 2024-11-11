@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface GameService {
     List<GameDto> findGameByTeamName(String name);
-    GameDto add(AddGameDto addGameDto);
-    Optional<GameDto> update(GameDto updateGameDto);
-
+    GameDto addGame(AddGameDto addGameDto);
+    Optional<GameDto> updateGame(GameDto updateGameDto);
 }

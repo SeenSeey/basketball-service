@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface PlayerService {
     List<PlayerDto> findPlayerByTeamName(String name);
-    PlayerDto add(AddPlayerDto addPlayerDto);
-    Optional<PlayerDto> update(PlayerDto updatePlayerDto);
+    PlayerDto addPlayer(AddPlayerDto addPlayerDto);
+    Optional<PlayerDto> updatePlayer(PlayerDto updatePlayerDto);
 }

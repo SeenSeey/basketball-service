@@ -37,6 +37,11 @@ public class TeamRepositoryImpl implements TeamRepository {
     }
 
     @Override
+    public Optional<Team> findByName(String name) {
+        return teamRepository.findByName(name);
+    }
+
+    @Override
     public Optional<Team> findById(int id) {
         return teamRepository.findById(id);
     }

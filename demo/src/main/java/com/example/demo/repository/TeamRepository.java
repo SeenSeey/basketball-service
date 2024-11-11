@@ -14,6 +14,9 @@ public interface TeamRepository extends CrudRepository<Team, Integer> {
     @Query(value = "SELECT t FROM Team t JOIN t.game g WHERE g.id = :gameId")
     List<Team> findTeamByGameId(@Param("gameId") int id);
 
+    @Query(value = "SELECT t FROM Team t WHERE t.name = :teamName")
+    Optional<Team> findByName(@Param("teamName") String name);
+
     @Query(value = "SELECT t FROM Team t WHERE t.id = :id")
     Optional<Team> findById(@Param("id") int id);
 }

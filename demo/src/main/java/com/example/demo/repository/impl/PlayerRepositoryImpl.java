@@ -37,6 +37,11 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     }
 
     @Override
+    public Optional<Player> findByName(String fullName) {
+        return playerRepository.findByName(fullName);
+    }
+
+    @Override
     public Optional<Player> findById(int id) {
         return playerRepository.findById(id);
     }
