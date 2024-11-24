@@ -43,8 +43,27 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Optional<PlayerDto> updatePlayer(PlayerDto updatePlayerDto) {
-        return Optional.empty();
+    public void updatePlayer(PlayerDto updatePlayerDto) {
+
+        if (!this.validationUtil.isValid(updatePlayerDto)) {
+
+            this.validationUtil
+                    .violations(updatePlayerDto)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            return;
+        }
+
+        var player = this.playerRepository.findById(updatePlayerDto.getId())
+                .orElseThrow(() -> new RuntimeException("Игрок не найден"));
+
+        player.setFullName(updatePlayerDto.getFullName());
+        player.setHeight(updatePlayerDto.getCountry());
+        player.setCountry(updatePlayerDto.getCountry());
+        player.setAge(updatePlayerDto.getAge());
+
+        this.playerRepository.update(player);
     }
 
     @Override

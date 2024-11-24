@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface PlayerService {
     List<PlayerDto> findPlayerByTeamName(String name);
     void addPlayer(AddPlayerDto addPlayerDto);
-    Optional<PlayerDto> updatePlayer(PlayerDto updatePlayerDto);
+    void updatePlayer(PlayerDto updatePlayerDto);
     Player findById(int id);
 }

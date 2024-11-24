@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PerformanceServiceImpl implements PerformanceService {
     private final PerformanceRepository performanceRepository;
@@ -54,6 +53,31 @@ public class PerformanceServiceImpl implements PerformanceService {
     }
 
     @Override
+    public void updatePerformance(PerformanceDto updatePerformanceDto) {
+
+        if (!this.validationUtil.isValid(updatePerformanceDto)) {
+
+            this.validationUtil
+                    .violations(updatePerformanceDto)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            return;
+        }
+
+        var performance = performanceRepository.findById(updatePerformanceDto.getId())
+                .orElseThrow(() -> new RuntimeException("Статистика не найдена"));
+
+        performance.setPlayer(this.playerService.findById(updatePerformanceDto.getPlayerId()));
+        performance.setGame(this.gameService.findById(updatePerformanceDto.getGameId()));
+        performance.setPoints(updatePerformanceDto.getPoints());
+        performance.setBlocks(updatePerformanceDto.getBlocks());
+        performance.setPasses(updatePerformanceDto.getPasses());
+        performance.setThreePointsShots(updatePerformanceDto.getThreePointsShots());
+
+        this.performanceRepository.update(performance);
+    }
+    @Override
     public List<PerformanceDto> findPerformanceByPlayerFullName(String fullName) {
         return null;
     }
@@ -61,10 +85,5 @@ public class PerformanceServiceImpl implements PerformanceService {
     @Override
     public List<PerformanceDto> findPerformanceByNameAndDate(String fullName) {
         return null;
-    }
-
-    @Override
-    public Optional<PerformanceDto> updatePerformance(PerformanceDto updatePerformanceDto) {
-        return Optional.empty();
     }
 }

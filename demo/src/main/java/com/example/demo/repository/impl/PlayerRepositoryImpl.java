@@ -22,8 +22,8 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     }
 
     @Override
-    public Optional<Player> update(Player player) {
-        return Optional.of(entityManager.merge(player));
+    public Player update(Player player) {
+        return entityManager.merge(player);
     }
 
     @Override

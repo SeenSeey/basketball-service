@@ -6,5 +6,5 @@ import java.util.Optional;
 
 @NoRepositoryBean
 public interface CrudRepository<T, Integer> extends BaseRepository<T, Integer> {
-    Optional<T> update(T object);
+    T update(T object);
 }

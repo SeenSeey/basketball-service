@@ -48,8 +48,27 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Optional<TeamDto> updateTeam(TeamDto updateDto) {
-        return Optional.empty();
+    public void updateTeam(TeamDto updateDto) {
+
+        if (!this.validationUtil.isValid(updateDto)) {
+
+            this.validationUtil
+                    .violations(updateDto)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            return;
+        }
+
+        var team = this.teamRepository.findById(updateDto.getId())
+                .orElseThrow(() -> new RuntimeException("Команда не найдена"));
+
+        team.setName(updateDto.getName());
+        team.setConference(updateDto.getConference());
+        team.setWinsInSeason(updateDto.getWinsInSeason());
+        team.setLoosesInSeason(updateDto.getLoosesInSeason());
+
+        this.teamRepository.update(team);
     }
 
     @Override

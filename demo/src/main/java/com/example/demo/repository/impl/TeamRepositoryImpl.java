@@ -22,8 +22,8 @@ public class TeamRepositoryImpl implements TeamRepository {
     }
 
     @Override
-    public Optional<Team> update(Team team) {
-        return Optional.of(entityManager.merge(team));
+    public Team update(Team team) {
+        return entityManager.merge(team);
     }
 
     @Override

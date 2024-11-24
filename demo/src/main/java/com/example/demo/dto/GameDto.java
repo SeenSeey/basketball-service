@@ -6,13 +6,18 @@ import java.util.Date;
 
 public class GameDto {
     private int id;
+    private String teamNameHome;
+    private String teamNameVisit;
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
     private Date dateOfGame;
 
-    public GameDto(int id, int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, Date dateOfGame) {
+    public GameDto(int id, String teamNameHome, String teamNameVisit,
+                   int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, Date dateOfGame) {
         this.id = id;
+        this.teamNameHome = teamNameHome;
+        this.teamNameVisit = teamNameVisit;
         this.scoreHomeTeam = scoreHomeTeam;
         this.scoreVisitorTeam = scoreVisitorTeam;
         this.stadiumName = stadiumName;
@@ -23,6 +28,20 @@ public class GameDto {
     @NotEmpty
     public int getId() {
         return id;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, message = "Team name can`t be so short")
+    public String getTeamNameHome() {
+        return teamNameHome;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, message = "Team name can`t be so short")
+    public String getTeamNameVisit() {
+        return teamNameVisit;
     }
 
     @Min(value = 0, message = "The score can`t be negative")
@@ -52,6 +71,14 @@ public class GameDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setTeamNameHome(String teamNameHome) {
+        this.teamNameHome = teamNameHome;
+    }
+
+    public void setTeamNameVisit(String teamNameVisit) {
+        this.teamNameVisit = teamNameVisit;
     }
 
     public void setScoreHomeTeam(int scoreHomeTeam) {

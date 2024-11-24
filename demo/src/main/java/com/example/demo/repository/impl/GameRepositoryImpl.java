@@ -22,8 +22,8 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public Optional<Game> update(Game game) {
-        return Optional.of(entityManager.merge(game));
+    public Game update(Game game) {
+        return entityManager.merge(game);
     }
 
     @Override

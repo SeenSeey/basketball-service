@@ -10,5 +10,5 @@ public interface PerformanceService {
     List<PerformanceDto> findPerformanceByPlayerFullName(String fullName);
     List<PerformanceDto> findPerformanceByNameAndDate(String fullName);
     void addPerformance(AddPerformanceDto addPerformanceDto);
-    Optional<PerformanceDto> updatePerformance(PerformanceDto updatePerformanceDto);
+    void updatePerformance(PerformanceDto updatePerformanceDto);
 }

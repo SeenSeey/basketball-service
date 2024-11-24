@@ -22,8 +22,8 @@ public class PerformanceRepositoryImpl implements PerformanceRepository {
     }
 
     @Override
-    public Optional<Performance> update(Performance performance) {
-        return Optional.of(entityManager.merge(performance));
+    public Performance update(Performance performance) {
+        return entityManager.merge(performance);
     }
 
     @Override
