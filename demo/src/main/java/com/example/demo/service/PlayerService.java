@@ -11,6 +11,5 @@ public interface PlayerService {
     List<PlayerDto> findPlayerByTeamName(String name);
     void addPlayer(AddPlayerDto addPlayerDto);
     Optional<PlayerDto> updatePlayer(PlayerDto updatePlayerDto);
-
-    Player findByName(String fullName);
+    Player findById(int id);
 }

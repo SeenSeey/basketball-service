@@ -20,6 +20,8 @@ public class PlayerDto {
         this.age = age;
     }
 
+    @NotNull
+    @NotEmpty
     public int getId() {
         return id;
     }

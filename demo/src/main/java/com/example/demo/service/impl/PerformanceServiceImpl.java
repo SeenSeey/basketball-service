@@ -47,7 +47,7 @@ public class PerformanceServiceImpl implements PerformanceService {
 
         Performance performance = this.modelMapper.map(performanceDto, Performance.class);
 
-        performance.setPlayer(this.playerService.findByName(performanceDto.getPlayer()));
+        performance.setPlayer(this.playerService.findById(performanceDto.getPlayerId()));
         performance.setGame(this.gameService.findById(performanceDto.getGameId()));
 
         this.performanceRepository.save(performance);

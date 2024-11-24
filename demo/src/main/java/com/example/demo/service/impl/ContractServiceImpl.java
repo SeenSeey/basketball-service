@@ -46,7 +46,7 @@ public class ContractServiceImpl implements ContractService {
 
         Contract contract = this.modelMapper.map(contractDto, Contract.class);
 
-        contract.setPlayer(this.playerService.findByName(contractDto.getPlayer()));
+        contract.setPlayer(this.playerService.findById(contractDto.getPlayerId()));
         contract.setTeam(this.teamService.findByName(contractDto.getTeam()));
 
         this.contractRepository.save(contract);

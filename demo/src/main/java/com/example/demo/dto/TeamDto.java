@@ -20,6 +20,8 @@ public class TeamDto {
         this.loosesInSeason = loosesInSeason;
     }
 
+    @NotNull
+    @NotEmpty
     public int getId() {
         return id;
     }

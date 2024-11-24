@@ -43,17 +43,17 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public List<PlayerDto> findPlayerByTeamName(String name) {
-        return null;
-    }
-
-    @Override
     public Optional<PlayerDto> updatePlayer(PlayerDto updatePlayerDto) {
         return Optional.empty();
     }
 
     @Override
-    public Player findByName(String fullName) {
-        return this.playerRepository.findByName(fullName).orElse(null);
+    public List<PlayerDto> findPlayerByTeamName(String name) {
+        return null;
+    }
+
+    @Override
+    public Player findById(int id) {
+        return this.playerRepository.findById(id).orElse(null);
     }
 }

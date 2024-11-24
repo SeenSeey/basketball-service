@@ -4,15 +4,14 @@ import jakarta.validation.constraints.*;
 
 public class AddPerformanceDto {
     private int playerId;
-    private String player;
     private int gameId;
     private int points;
     private int blocks;
     private int passes;
     private int threePointsShots;
 
-    public AddPerformanceDto(int id, String player, int gameId, int points, int blocks, int passes, int threePointsShots) {
-        this.player = player;
+    public AddPerformanceDto(int playerId, int gameId, int points, int blocks, int passes, int threePointsShots) {
+        this.playerId = playerId;
         this.gameId = gameId;
         this.points = points;
         this.blocks = blocks;
@@ -22,11 +21,12 @@ public class AddPerformanceDto {
 
     @NotNull
     @NotEmpty
-    @Size(min = 2, message = "Player`s name must be more than two characters!")
-    public String getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
+    @NotNull
+    @NotEmpty
     public int getGameId() {
         return gameId;
     }
@@ -54,8 +54,8 @@ public class AddPerformanceDto {
         return threePointsShots;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public void setGameId(int gameId) {

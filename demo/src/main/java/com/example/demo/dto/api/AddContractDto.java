@@ -8,14 +8,14 @@ import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 public class AddContractDto {
-    private String player;
+    private int playerId;
     private String team;
     private int salaryPerYear;
     private Date contractStartDate;
     private Date contractEndDate;
 
-    public AddContractDto(String player, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
-        this.player = player;
+    public AddContractDto(int id, int playerId, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
+        this.playerId = playerId;
         this.team = team;
         this.salaryPerYear = salaryPerYear;
         this.contractStartDate = contractStartDate;
@@ -24,9 +24,8 @@ public class AddContractDto {
 
     @NotNull
     @NotEmpty
-    @Size(min = 2, message = "Player`s name must be more than two characters!")
-    public String getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
     @NotNull
@@ -54,8 +53,8 @@ public class AddContractDto {
         return contractEndDate;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public void setTeam(String team) {

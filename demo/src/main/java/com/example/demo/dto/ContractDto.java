@@ -9,30 +9,31 @@ import java.util.Date;
 
 public class ContractDto {
     private int id;
-    private String player;
+    private int playerId;
     private String team;
     private int salaryPerYear;
     private Date contractStartDate;
     private Date contractEndDate;
 
-    public ContractDto(int id, String player, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
+    public ContractDto(int id, int playerId, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
         this.id = id;
-        this.player = player;
+        this.playerId = playerId;
         this.team = team;
         this.salaryPerYear = salaryPerYear;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
     }
 
+    @NotNull
+    @NotEmpty
     public int getId() {
         return id;
     }
 
     @NotNull
     @NotEmpty
-    @Size(min = 2, message = "Player`s name must be more than two characters!")
-    public String getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
     @NotNull
@@ -64,8 +65,8 @@ public class ContractDto {
         this.id = id;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public void setTeam(String team) {
