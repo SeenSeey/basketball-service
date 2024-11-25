@@ -4,6 +4,8 @@ import com.example.demo.models.Contract;
 import com.example.demo.repository.ContractRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,5 +31,10 @@ public class ContractRepositoryImpl implements ContractRepository {
     @Override
     public Optional<Contract> findById(int id) {
         return contractRepository.findById(id);
+    }
+
+    @Override
+    public Page<Contract> findAll(Pageable pageable) {
+        return contractRepository.findAll(pageable);
     }
 }

@@ -12,6 +12,9 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -54,8 +57,18 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public Page<ContractDto> getContracts(String search, int page, int size) {
-        return null;
+    public Page<ContractDto> getContracts(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id"));
+        Page<Contract> contractPage = contractRepository.findAll(pageable);
+
+        return contractPage.map(contract -> new ContractDto(
+                contract.getId(),
+                contract.getPlayer().getId(),
+                contract.getTeam().getName(),
+                contract.getSalaryPerYear(),
+                contract.getContractStartDate(),
+                contract.getContractEndDate()
+        ));
     }
 
     @Override

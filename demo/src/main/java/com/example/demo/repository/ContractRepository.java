@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.models.Contract;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -13,4 +15,7 @@ public interface ContractRepository extends BaseRepository<Contract, Integer> {
 
     @Query(value = "SELECT c FROM Contract c WHERE c.id = :id")
     Optional<Contract> findById(@Param("id") int id);
+
+    @Query(value = "SELECT c FROM Contract c")
+    Page<Contract> findAll(Pageable pageable);
 }
