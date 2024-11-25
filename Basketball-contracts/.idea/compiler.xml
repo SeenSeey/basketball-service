@@ -6,21 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo" />
-        <module name="basketball-contracts" />
+        <module name="Basketball-contracts" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="basketball-contracts" target="18" />
-      <module name="bskt-cntrcts" target="18" />
-      <module name="demo" target="18" />
+      <module name="Basketball-contracts" target="18" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="basketball-contracts" options="-parameters" />
-      <module name="bskt-cntrcts" options="-parameters" />
-      <module name="demo" options="-parameters" />
+      <module name="Basketball-contracts" options="-parameters" />
     </option>
   </component>
 </project>

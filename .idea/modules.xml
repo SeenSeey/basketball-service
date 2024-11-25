@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Basketball-contracts/basketball-contracts.iml" filepath="$PROJECT_DIR$/Basketball-contracts/basketball-contracts.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/basketball-service.iml" filepath="$PROJECT_DIR$/.idea/basketball-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
-      <module fileurl="file://$USER_HOME$/IdeaProjects/Basketball-contracts/demo (1).iml" filepath="$USER_HOME$/IdeaProjects/Basketball-contracts/demo (1).iml" />
     </modules>
   </component>
 </project>
