@@ -10,6 +10,9 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -81,8 +84,18 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Page<TeamDto> getTeams(String search, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("title"));
+        Page<Team> teamPage = search != null
+                ? teamRepository.findByTitleContainingIgnoreCase(search, pageable)
+                : teamRepository.findAll(pageable);
 
-        return null;
+        return teamPage.map(team -> new TeamDto(
+                team.getId(),
+                team.getName(),
+                team.getConference(),
+                team.getWinsInSeason(),
+                team.getLoosesInSeason()
+        ));
     }
 
     @Override

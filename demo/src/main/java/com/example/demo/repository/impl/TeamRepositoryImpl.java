@@ -4,6 +4,8 @@ import com.example.demo.models.Team;
 import com.example.demo.repository.TeamRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -44,5 +46,15 @@ public class TeamRepositoryImpl implements TeamRepository {
     @Override
     public Optional<Team> findById(int id) {
         return teamRepository.findById(id);
+    }
+
+    @Override
+    public Page<Team> findAll(Pageable pageable) {
+        return teamRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Team> findByTitleContainingIgnoreCase(String searchTerm, Pageable pageable) {
+        return teamRepository.findByTitleContainingIgnoreCase(searchTerm, pageable);
     }
 }
