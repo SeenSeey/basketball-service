@@ -11,6 +11,7 @@ import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -77,6 +78,20 @@ public class PerformanceServiceImpl implements PerformanceService {
 
         this.performanceRepository.update(performance);
     }
+
+    @Override
+    public Page<PerformanceDto> getPerformances(String search, int page, int size) {
+        return null;
+    }
+
+    @Override
+    public PerformanceDto getPerformance(int id) {
+        Performance performance = this.performanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Статистика не найдена"));
+
+        return this.modelMapper.map(performance, PerformanceDto.class);
+    }
+
     @Override
     public List<PerformanceDto> findPerformanceByPlayerFullName(String fullName) {
         return null;

@@ -7,6 +7,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ContractRepositoryImpl implements ContractRepository {
@@ -23,5 +24,10 @@ public class ContractRepositoryImpl implements ContractRepository {
     @Override
     public List<Contract> findContractByPlayerId(int id) {
         return contractRepository.findContractByPlayerId(id);
+    }
+
+    @Override
+    public Optional<Contract> findById(int id) {
+        return contractRepository.findById(id);
     }
 }

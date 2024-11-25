@@ -9,9 +9,9 @@ import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Optional;
 
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
@@ -43,11 +43,6 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<TeamDto> findTeamByGameId(int id) {
-        return null;
-    }
-
-    @Override
     public void updateTeam(TeamDto updateDto) {
 
         if (!this.validationUtil.isValid(updateDto)) {
@@ -69,6 +64,30 @@ public class TeamServiceImpl implements TeamService {
         team.setLoosesInSeason(updateDto.getLoosesInSeason());
 
         this.teamRepository.update(team);
+    }
+
+    @Override
+    public List<TeamDto> findTeamByGameId(int id) {
+        return null;
+    }
+
+    @Override
+    public TeamDto getTeam(int id) {
+        Team team = this.teamRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Команда не найдена"));
+
+        return this.modelMapper.map(team, TeamDto.class);
+    }
+
+    @Override
+    public Page<TeamDto> getTeams(String search, int page, int size) {
+//        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("name"));
+//
+//        Page<Team> teamsPage = (search != null && !search.trim().isEmpty())
+//                ? teamRepository.findByNameContainingIgnoreCase(search, pageable)
+//                : teamRepository.findAll(pageable);
+//
+        return null;
     }
 
     @Override

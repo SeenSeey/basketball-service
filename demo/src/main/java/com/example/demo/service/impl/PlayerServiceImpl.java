@@ -9,9 +9,9 @@ import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
@@ -64,6 +64,19 @@ public class PlayerServiceImpl implements PlayerService {
         player.setAge(updatePlayerDto.getAge());
 
         this.playerRepository.update(player);
+    }
+
+    @Override
+    public Page<PlayerDto> getPlayers(String search, int page, int size) {
+        return null;
+    }
+
+    @Override
+    public PlayerDto getPlayer(int id) {
+        Player player = this.playerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Игрок не найден"));
+
+        return this.modelMapper.map(player, PlayerDto.class);
     }
 
     @Override

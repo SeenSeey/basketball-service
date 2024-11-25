@@ -11,6 +11,7 @@ import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Set;
@@ -78,6 +79,19 @@ public class GameServiceImpl implements GameService {
         game.setDateOfGame(updateGameDto.getDateOfGame());
 
         this.gameRepository.update(game);
+    }
+
+    @Override
+    public Page<GameDto> getGames(String search, int page, int size) {
+        return null;
+    }
+
+    @Override
+    public GameDto getGame(int id) {
+        Game game = this.gameRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Игра не найдена"));
+
+        return this.modelMapper.map(game, GameDto.class);
     }
 
     @Override

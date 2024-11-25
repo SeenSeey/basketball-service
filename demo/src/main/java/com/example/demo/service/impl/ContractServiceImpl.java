@@ -11,6 +11,7 @@ import com.example.demo.utils.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -50,6 +51,19 @@ public class ContractServiceImpl implements ContractService {
         contract.setTeam(this.teamService.findByName(contractDto.getTeam()));
 
         this.contractRepository.save(contract);
+    }
+
+    @Override
+    public Page<ContractDto> getContracts(String search, int page, int size) {
+        return null;
+    }
+
+    @Override
+    public ContractDto getContract(int id) {
+        Contract contract = this.contractRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Контракт не найден"));
+
+        return this.modelMapper.map(contract, ContractDto.class);
     }
 
     @Override
