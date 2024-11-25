@@ -10,6 +10,9 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -68,7 +71,18 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Page<PlayerDto> getPlayers(String search, int page, int size) {
-        return null;
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("title"));
+        Page<Player> playerPage = search != null
+                ? playerRepository.findByFullNameContainingIgnoreCase(search, pageable)
+                : playerRepository.findAll(pageable);
+
+        return playerPage.map(player -> new PlayerDto(
+                player.getId(),
+                player.getFullName(),
+                player.getHeight(),
+                player.getCountry(),
+                player.getAge()
+        ));
     }
 
     @Override

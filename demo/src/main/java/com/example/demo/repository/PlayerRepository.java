@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.models.Player;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,4 +21,10 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
     @Query(value = "SELECT p FROM Player p WHERE p.id = :id")
     Optional<Player> findById(@Param("id") int id);
+
+    @Query(value = "SELECT p FROM Player p")
+    Page<Player> findAll(Pageable pageable);
+
+    @Query(value = "SELECT p FROM Player p WHERE LOWER(p.fullName) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
+    Page<Player> findByFullNameContainingIgnoreCase(@Param("searchTerm") String searchTerm, Pageable pageable);
 }

@@ -4,6 +4,8 @@ import com.example.demo.models.Player;
 import com.example.demo.repository.PlayerRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -44,5 +46,15 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     @Override
     public Optional<Player> findById(int id) {
         return playerRepository.findById(id);
+    }
+
+    @Override
+    public Page<Player> findAll(Pageable pageable) {
+        return playerRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Player> findByFullNameContainingIgnoreCase(String searchTerm, Pageable pageable) {
+        return playerRepository.findByFullNameContainingIgnoreCase(searchTerm, pageable);
     }
 }
