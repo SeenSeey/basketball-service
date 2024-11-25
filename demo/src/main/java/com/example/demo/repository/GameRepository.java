@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.models.Game;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,4 +18,7 @@ public interface GameRepository extends CrudRepository<Game, Integer> {
 
     @Query(value = "SELECT g FROM Game g WHERE g.id = :id")
     Optional<Game> findById(@Param("id") int id);
+
+    @Query(value = "SELECT g FROM Game g")
+    Page<Game> findAll(Pageable pageable);
 }

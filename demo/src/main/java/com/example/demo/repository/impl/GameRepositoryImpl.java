@@ -4,6 +4,8 @@ import com.example.demo.models.Game;
 import com.example.demo.repository.GameRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -39,5 +41,10 @@ public class GameRepositoryImpl implements GameRepository {
     @Override
     public Optional<Game> findById(int id) {
         return gameRepository.findById(id);
+    }
+
+    @Override
+    public Page<Game> findAll(Pageable pageable) {
+        return gameRepository.findAll(pageable);
     }
 }

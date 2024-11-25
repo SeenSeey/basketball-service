@@ -12,6 +12,9 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Set;
@@ -82,8 +85,32 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Page<GameDto> getGames(String search, int page, int size) {
-        return null;
+    public Page<GameDto> getGames(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id"));
+        Page<Game> gamePage = gameRepository.findAll(pageable);
+
+        return gamePage.map(game -> {
+            String teamNameHome = game.getTeam().stream()
+                    .findFirst()
+                    .map(Team::getName)
+                    .orElse("Команда не существует");
+
+            String teamNameVisit = game.getTeam().stream()
+                    .skip(1)
+                    .findFirst()
+                    .map(Team::getName)
+                    .orElse("Команда не существует");
+
+            return new GameDto(
+                    game.getId(),
+                    teamNameHome,
+                    teamNameVisit,
+                    game.getScoreHomeTeam(),
+                    game.getScoreVisitorTeam(),
+                    game.getStadiumName(),
+                    game.getDateOfGame()
+            );
+        });
     }
 
     @Override
@@ -91,7 +118,22 @@ public class GameServiceImpl implements GameService {
         Game game = this.gameRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Игра не найдена"));
 
-        return this.modelMapper.map(game, GameDto.class);
+        String teamNameHome = game.getTeam().stream()
+                .findFirst()
+                .map(Team::getName)
+                .orElse("Команда не существует");
+
+        String teamNameVisit = game.getTeam().stream()
+                .skip(1)
+                .findFirst()
+                .map(Team::getName)
+                .orElse("Команда не существует");
+
+        GameDto gameDto = this.modelMapper.map(game, GameDto.class);
+        gameDto.setTeamNameHome(teamNameHome);
+        gameDto.setTeamNameVisit(teamNameVisit);
+
+        return gameDto;
     }
 
     @Override
