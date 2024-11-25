@@ -84,10 +84,10 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Page<TeamDto> getTeams(String search, int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("title"));
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("name"));
         Page<Team> teamPage = search != null
-                ? teamRepository.findByTitleContainingIgnoreCase(search, pageable)
-                : teamRepository.findAll(pageable);
+                ? this.teamRepository.findByTitleContainingIgnoreCase(search, pageable)
+                : this.teamRepository.findAll(pageable);
 
         return teamPage.map(team -> new TeamDto(
                 team.getId(),

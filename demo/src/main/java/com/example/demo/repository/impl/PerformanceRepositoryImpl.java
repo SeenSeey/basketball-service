@@ -4,6 +4,8 @@ import com.example.demo.models.Performance;
 import com.example.demo.repository.PerformanceRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -34,5 +36,10 @@ public class PerformanceRepositoryImpl implements PerformanceRepository {
     @Override
     public Optional<Performance> findById(int id) {
         return performanceRepository.findById(id);
+    }
+
+    @Override
+    public Page<Performance> findAll(Pageable pageable) {
+        return performanceRepository.findAll(pageable);
     }
 }

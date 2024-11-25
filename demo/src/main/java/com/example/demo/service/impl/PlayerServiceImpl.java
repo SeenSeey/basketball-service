@@ -71,10 +71,10 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Page<PlayerDto> getPlayers(String search, int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("title"));
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("fullName"));
         Page<Player> playerPage = search != null
-                ? playerRepository.findByFullNameContainingIgnoreCase(search, pageable)
-                : playerRepository.findAll(pageable);
+                ? this.playerRepository.findByFullNameContainingIgnoreCase(search, pageable)
+                : this.playerRepository.findAll(pageable);
 
         return playerPage.map(player -> new PlayerDto(
                 player.getId(),

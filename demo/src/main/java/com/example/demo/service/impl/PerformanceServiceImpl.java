@@ -12,6 +12,9 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -80,8 +83,19 @@ public class PerformanceServiceImpl implements PerformanceService {
     }
 
     @Override
-    public Page<PerformanceDto> getPerformances(String search, int page, int size) {
-        return null;
+    public Page<PerformanceDto> getPerformances(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id"));
+        Page<Performance> performancePage = this.performanceRepository.findAll(pageable);
+
+        return performancePage.map(performance -> new PerformanceDto(
+                performance.getId(),
+                performance.getPlayer().getId(),
+                performance.getGame().getId(),
+                performance.getPoints(),
+                performance.getBlocks(),
+                performance.getPasses(),
+                performance.getThreePointsShots()
+        ));
     }
 
     @Override

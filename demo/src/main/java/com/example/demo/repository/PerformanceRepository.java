@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.models.Performance;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -13,4 +15,7 @@ public interface PerformanceRepository extends CrudRepository<Performance, Integ
 
     @Query(value = "SELECT p FROM Performance p WHERE p.id = :id")
     Optional<Performance> findById(@Param("id") int id);
+
+    @Query(value = "SELECT p FROM Performance p")
+    Page<Performance> findAll(Pageable pageable);
 }
