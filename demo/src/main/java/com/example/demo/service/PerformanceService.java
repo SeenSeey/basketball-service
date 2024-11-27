@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface PerformanceService {
-    List<PerformanceDto> findPerformanceByPlayerFullName(String fullName);
-    List<PerformanceDto> findPerformanceByNameAndDate(String fullName);
+//    List<PerformanceDto> findPerformanceByPlayerFullName(String fullName);
+//    List<PerformanceDto> findPerformanceByNameAndDate(String fullName);
     void addPerformance(AddPerformanceDto addPerformanceDto);
     void updatePerformance(PerformanceDto updatePerformanceDto);
     Page<PerformanceDto> getPerformances(int page, int size);

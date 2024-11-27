@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PlayerService {
-    List<PlayerDto> findPlayerByTeamName(String name);
+//    List<PlayerDto> findPlayerByTeamName(String name);
     void addPlayer(AddPlayerDto addPlayerDto);
     void updatePlayer(PlayerDto updatePlayerDto);
     Page<PlayerDto> getPlayers(String search, int page, int size);

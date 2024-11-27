@@ -106,13 +106,13 @@ public class PerformanceServiceImpl implements PerformanceService {
         return this.modelMapper.map(performance, PerformanceDto.class);
     }
 
-    @Override
-    public List<PerformanceDto> findPerformanceByPlayerFullName(String fullName) {
-        return null;
-    }
-
-    @Override
-    public List<PerformanceDto> findPerformanceByNameAndDate(String fullName) {
-        return null;
-    }
+//    @Override
+//    public List<PerformanceDto> findPerformanceByPlayerFullName(String fullName) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<PerformanceDto> findPerformanceByNameAndDate(String fullName) {
+//        return null;
+//    }
 }

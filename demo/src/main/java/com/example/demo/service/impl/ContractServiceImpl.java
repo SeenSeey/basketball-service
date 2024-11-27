@@ -79,8 +79,8 @@ public class ContractServiceImpl implements ContractService {
         return this.modelMapper.map(contract, ContractDto.class);
     }
 
-    @Override
-    public List<ContractDto> findContractByPlayerId(int id) {
-        return null;
-    }
+//    @Override
+//    public List<ContractDto> findContractByPlayerId(int id) {
+//        return null;
+//    }
 }

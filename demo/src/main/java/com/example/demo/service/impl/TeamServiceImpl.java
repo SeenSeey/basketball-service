@@ -69,10 +69,10 @@ public class TeamServiceImpl implements TeamService {
         this.teamRepository.update(team);
     }
 
-    @Override
-    public List<TeamDto> findTeamByGameId(int id) {
-        return null;
-    }
+//    @Override
+//    public List<TeamDto> findTeamByGameId(int id) {
+//        return null;
+//    }
 
     @Override
     public TeamDto getTeam(int id) {

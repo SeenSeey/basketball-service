@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.util.List;
 import java.util.Set;
 
 public class GameServiceImpl implements GameService {
@@ -136,10 +135,10 @@ public class GameServiceImpl implements GameService {
         return gameDto;
     }
 
-    @Override
-    public List<GameDto> findGameByTeamName(String name) {
-        return null;
-    }
+//    @Override
+//    public List<GameDto> findGameByTeamName(String name) {
+//        return null;
+//    }
 
     @Override
     public Game findById(int id) {
