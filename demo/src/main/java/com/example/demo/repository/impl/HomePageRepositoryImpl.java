@@ -40,4 +40,24 @@ public class HomePageRepositoryImpl implements HomePageRepository {
 
         return topPerformances;
     }
+
+    @Override
+    public Object[] findBestPlayerThisSeason() {
+        String query = "SELECT p.fullName, " +
+                "AVG(perf.points) AS avgPoints, AVG(perf.passes) AS avgPasses, AVG(perf.blocks) AS avgBlocks, " +
+                "t.name AS teamName " +
+                "FROM Performance perf " +
+                "JOIN perf.game g " +
+                "JOIN perf.player p " +
+                "JOIN p.contracts c " +
+                "JOIN c.team t " +
+                "WHERE YEAR(g.dateOfGame) = YEAR(CURRENT_DATE) " +
+                "AND c.contractStartDate <= CURRENT_DATE " +
+                "AND c.contractEndDate >= CURRENT_DATE " +
+                "GROUP BY p.id, t.name " +
+                "ORDER BY avgPoints DESC " +
+                "LIMIT 1";
+
+        return (Object[]) entityManager.createQuery(query).getSingleResult();
+    }
 }

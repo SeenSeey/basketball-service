@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dto.BestPlayerInLastGameDto;
+import com.example.demo.dto.BestPlayerThisSeasonDto;
 import com.example.demo.dto.LastGameDto;
 import com.example.demo.models.Game;
 import com.example.demo.models.Performance;
@@ -63,5 +64,18 @@ public class HomePageServiceImpl implements HomePageService {
                         performance.getBlocks()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public BestPlayerThisSeasonDto getBestPlayerThisSeason() {
+        Object[] stat = homePageRepository.findBestPlayerThisSeason();
+
+        String fullName = (String) stat[0];
+        Double avgPoints = (Double) stat[1];
+        Double avgPasses = (Double) stat[2];
+        Double avgBlocks = (Double) stat[3];
+        String teamName = (String) stat[4];
+
+        return new BestPlayerThisSeasonDto(fullName, avgPoints, avgPasses, avgBlocks, teamName);
     }
 }

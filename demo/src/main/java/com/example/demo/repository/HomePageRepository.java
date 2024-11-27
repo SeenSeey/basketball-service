@@ -8,5 +8,6 @@ import java.util.List;
 public interface HomePageRepository {
     List<Game> findLastFourGames();
     List<Performance> findTopPerformancesForEachGame();
+    Object[] findBestPlayerThisSeason();
 
 }
