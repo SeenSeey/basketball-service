@@ -4,6 +4,7 @@ import com.example.demo.models.Team;
 import com.example.demo.repository.TeamRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,7 @@ public class TeamRepositoryImpl implements TeamRepository {
     }
 
     @Override
+    @Transactional
     public Team update(Team team) {
         return entityManager.merge(team);
     }

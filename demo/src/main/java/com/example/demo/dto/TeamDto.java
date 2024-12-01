@@ -20,8 +20,9 @@ public class TeamDto {
         this.loosesInSeason = loosesInSeason;
     }
 
+    protected TeamDto() {}
+
     @NotNull
-    @NotEmpty
     public int getId() {
         return id;
     }

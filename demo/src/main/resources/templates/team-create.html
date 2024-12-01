@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/offcanvas}"></div>
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+        <div class="justify-content-center">
+          <h1>Добавить Команду</h1>
+        </div>
+
+        <form th:action="@{/teams/create}"
+              th:method="post"
+              th:object="${form}"
+              class="m-md-auto w-50 pb-3">
+
+          <div class="mb-3">
+            <label class="form-label" for="name">Имя</label>
+            <input th:field="*{name}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="name"/>
+            <small th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="text-danger">Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="conference">Конференция</label>
+            <input th:field="*{conference}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="conference"/>
+            <small th:if="${#fields.hasErrors('conference')}"
+                   th:errors="*{conference}"
+                   class="text-danger">Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="winsInSeason">Победы в сезоне</label>
+            <input th:field="*{winsInSeason}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="0"
+                   class="form-control text-center"
+                   id="winsInSeason"/>
+            <small th:if="${#fields.hasErrors('winsInSeason')}"
+                   th:errors="*{winsInSeason}"
+                   class="text-danger">Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="loosesInSeason">Поражения в сезоне</label>
+            <input th:field="*{loosesInSeason}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="0"
+                   class="form-control text-center"
+                   id="loosesInSeason"/>
+            <small th:if="${#fields.hasErrors('loosesInSeason')}"
+                   th:errors="*{loosesInSeason}"
+                   class="text-danger">Error message</small>
+          </div>
+
+          <button type="submit" class="btn btn-secondary">Создать команду</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer th:replace="~{fragments/footer}"/>
+</body>
+</html>
+

@@ -20,7 +20,7 @@ public class PlayerDto {
         this.age = age;
     }
 
-    public PlayerDto() {}
+    protected PlayerDto() {}
 
     @NotNull
     public int getId() {

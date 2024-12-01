@@ -21,8 +21,9 @@ public class PerformanceDto {
         this.threePointsShots = threePointsShots;
     }
 
+    protected PerformanceDto() {}
+
     @NotNull
-    @NotEmpty
     public int getId() {
         return id;
     }

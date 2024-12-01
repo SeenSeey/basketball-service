@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/offcanvas"></div>
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+        <div class="justify-content-center">
+          <h1>Данные команды</h1>
+        </div>
+        <div class="row bg-light rounded">
+          <h2>Команда</h2>
+          <h4 th:text="'ID: ' + ${model.team.id}"></h4>
+          <h4 th:text="'Название команды: ' + ${model.team.name}"></h4>
+          <h4 th:text="'Конференция: ' + ${model.team.conference}"></h4>
+          <h4 th:text="'Победы в сезоне: ' + ${model.team.winsInSeason}"></h4>
+          <h4 th:text="'Поражения в сезоне: ' + ${model.team.loosesInSeason}"></h4>
+        </div>
+        <div class="mt-2">
+          <a class="btn btn-success"
+             th:href="@{/teams}">Назад к командам</a>
+        </div>
+      </main>
+    </div>
+  </div>
+</main>
+<footer th:replace="fragments/footer"/>
+</body>
+</html>

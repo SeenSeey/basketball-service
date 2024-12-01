@@ -20,13 +20,11 @@ public class AddPerformanceDto {
     }
 
     @NotNull
-    @NotEmpty
     public int getPlayerId() {
         return playerId;
     }
 
     @NotNull
-    @NotEmpty
     public int getGameId() {
         return gameId;
     }

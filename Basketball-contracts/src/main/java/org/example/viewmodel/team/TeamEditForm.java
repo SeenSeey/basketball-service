@@ -1,11 +1,10 @@
-package org.example.input;
+package org.example.viewmodel.team;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 public record TeamEditForm(
-        @NotBlank(message = "Идентификатор обязателен")
-        int teamId,
+        int id,
 
         @NotBlank(message = "Введите название команды")
         String name,

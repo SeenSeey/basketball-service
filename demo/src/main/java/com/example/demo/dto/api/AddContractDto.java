@@ -23,7 +23,6 @@ public class AddContractDto {
     }
 
     @NotNull
-    @NotEmpty
     public int getPlayerId() {
         return playerId;
     }

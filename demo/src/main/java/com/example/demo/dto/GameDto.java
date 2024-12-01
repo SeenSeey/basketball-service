@@ -24,8 +24,9 @@ public class GameDto {
         this.dateOfGame = dateOfGame;
     }
 
+    protected GameDto() {}
+
     @NotNull
-    @NotEmpty
     public int getId() {
         return id;
     }

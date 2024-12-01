@@ -40,7 +40,6 @@ public class PlayerServiceImpl implements PlayerService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-//            return;
         }
 
         Player player = this.modelMapper.map(playerDto, Player.class);

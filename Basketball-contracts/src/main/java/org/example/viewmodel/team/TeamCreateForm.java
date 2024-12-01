@@ -1,6 +1,7 @@
-package org.example.input;
+package org.example.viewmodel.team;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record TeamCreateForm (
     @NotBlank(message = "Введите название команды")
@@ -9,10 +10,10 @@ public record TeamCreateForm (
     @NotBlank(message = "Выберите конференцию")
     String conference,
 
-    @NotBlank(message = "Укажите количество побед в сезоне")
+    @NotNull
     int winsInSeason,
 
-    @NotBlank(message = "Укажите количество поражений в сезоне")
+    @NotNull
     int loosesInSeason
 ) {
 }

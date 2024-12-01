@@ -24,8 +24,8 @@ public class ContractDto {
         this.contractEndDate = contractEndDate;
     }
 
+    protected ContractDto() {}
     @NotNull
-    @NotEmpty
     public int getId() {
         return id;
     }

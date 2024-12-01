@@ -31,7 +31,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void addTeam(AddTeamDto teamDto) {
+    public int addTeam(AddTeamDto teamDto) {
 
         if (!this.validationUtil.isValid(teamDto)) {
 
@@ -40,11 +40,10 @@ public class TeamServiceImpl implements TeamService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            return;
         }
 
         Team team = this.modelMapper.map(teamDto, Team.class);
-        this.teamRepository.save(team);
+        return this.teamRepository.save(team).getId();
     }
 
     @Override

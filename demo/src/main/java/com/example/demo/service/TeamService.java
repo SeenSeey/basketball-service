@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface TeamService {
 //    List<TeamDto> findTeamByGameId(int id);
-    void addTeam(AddTeamDto addTeamDto);
+    int addTeam(AddTeamDto addTeamDto);
     void updateTeam(TeamDto updateDto);
     TeamDto getTeam(int id);
     Page<TeamDto> getTeams(String search, int page, int size);

@@ -2,8 +2,8 @@ package org.example.controllers.crud;
 
 import jakarta.validation.Valid;
 import org.example.controllers.base.BaseController;
-import org.example.input.TeamCreateForm;
-import org.example.input.TeamEditForm;
+import org.example.viewmodel.team.TeamCreateForm;
+import org.example.viewmodel.team.TeamEditForm;
 import org.example.viewmodel.base.SearchForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,4 +39,7 @@ public interface TeamController extends BaseController {
             BindingResult bindingResult,
             Model model
     );
+
+    @GetMapping("/{id}")
+    String teamDetails(@PathVariable int id, Model model);
 }
