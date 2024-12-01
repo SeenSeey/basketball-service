@@ -13,9 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
     private final ValidationUtil validationUtil;
@@ -29,7 +31,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public void addPlayer(AddPlayerDto playerDto) {
+    public int addPlayer(AddPlayerDto playerDto) {
 
         if (!this.validationUtil.isValid(playerDto)) {
 
@@ -38,11 +40,11 @@ public class PlayerServiceImpl implements PlayerService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            return;
+//            return;
         }
 
         Player player = this.modelMapper.map(playerDto, Player.class);
-        this.playerRepository.save(player);
+        return this.playerRepository.save(player).getId();
     }
 
     @Override

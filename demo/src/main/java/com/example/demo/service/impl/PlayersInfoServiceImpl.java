@@ -4,11 +4,13 @@ import com.example.demo.dto.SearchPlayerInfoDto;
 import com.example.demo.models.Player;
 import com.example.demo.repository.PlayerInfoRepository;
 import com.example.demo.service.PlayersInfoService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PlayersInfoServiceImpl implements PlayersInfoService {
     private final PlayerInfoRepository playerInfoRepository;
 

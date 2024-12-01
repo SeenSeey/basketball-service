@@ -2,8 +2,8 @@ package org.example.controllers.crud;
 
 import jakarta.validation.Valid;
 import org.example.controllers.base.BaseController;
-import org.example.input.PlayerCreateForm;
-import org.example.input.PlayerEditForm;
+import org.example.viewmodel.player.PlayerCreateForm;
+import org.example.viewmodel.player.PlayerEditForm;
 import org.example.viewmodel.base.SearchForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,4 +38,7 @@ public interface PlayerController extends BaseController {
             BindingResult bindingResult,
             Model model
     );
+
+    @GetMapping("/{id}")
+    String playerDetails(int id, Model model);
 }

@@ -1,11 +1,11 @@
-package org.example.input;
+package org.example.viewmodel.player;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record PlayerEditForm (
-        @NotBlank(message = "Идентификатор обязателен")
-        int playerId,
+        int id,
 
         @NotBlank(message = "Введите полное имя")
         String fullName,

@@ -18,6 +18,8 @@ public class AddPlayerDto {
         this.age = age;
     }
 
+    public AddPlayerDto() {}
+
     @NotNull
     @NotEmpty
     @Size(min = 4, message = ("Player`s full name must be more than four characters!"))

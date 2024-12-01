@@ -12,8 +12,7 @@ C:\Третий курс\For programming\basketball-service\Basketball-contracts
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\GameEditForm.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PerformanceCreateForm.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PerformanceEditForm.java
-C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PlayerCreateForm.java
-C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PlayerEditForm.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PlayerInfoSearchForm.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\PlayerSearchForm.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\TeamCreateForm.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\input\TeamEditForm.java
@@ -25,4 +24,10 @@ C:\Третий курс\For programming\basketball-service\Basketball-contracts
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\homePage\HomePageViewModel.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\homePage\LastGameViewModel.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\homePage\NbaLastGameViewModel.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerCreateForm.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerCreateViewModel.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerEditForm.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerEditViewModel.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerListViewModel.java
+C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\player\PlayerViewModel.java
 C:\Третий курс\For programming\basketball-service\Basketball-contracts\src\main\java\org\example\viewmodel\searchInfo\SearchPlayerInfoViewModel.java

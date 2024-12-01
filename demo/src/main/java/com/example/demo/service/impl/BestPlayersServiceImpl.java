@@ -3,10 +3,12 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.BestPlayerThisSeasonDto;
 import com.example.demo.repository.BestPlayersRepository;
 import com.example.demo.service.BestPlayersService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class BestPlayersServiceImpl implements BestPlayersService {
     private final BestPlayersRepository bestPlayersRepository;
 

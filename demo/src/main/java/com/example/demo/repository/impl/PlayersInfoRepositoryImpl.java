@@ -4,10 +4,12 @@ import com.example.demo.models.Player;
 import com.example.demo.repository.PlayerInfoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PlayersInfoRepositoryImpl implements PlayerInfoRepository {
     @PersistenceContext
     private EntityManager entityManager;

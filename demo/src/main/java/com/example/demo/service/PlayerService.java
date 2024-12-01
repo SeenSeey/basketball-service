@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface PlayerService {
 //    List<PlayerDto> findPlayerByTeamName(String name);
-    void addPlayer(AddPlayerDto addPlayerDto);
+    int addPlayer(AddPlayerDto addPlayerDto);
     void updatePlayer(PlayerDto updatePlayerDto);
     Page<PlayerDto> getPlayers(String search, int page, int size);
     PlayerDto getPlayer(int id);
