@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface GameService {
 //    List<GameDto> findGameByTeamName(String name);
-    void addGame(AddGameDto addGameDto);
+    int addGame(AddGameDto addGameDto);
     void updateGame(GameDto updateGameDto);
     Page<GameDto> getGames(int page, int size);
     GameDto getGame(int id);

@@ -35,7 +35,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addGame(AddGameDto gameDto) {
+    public int addGame(AddGameDto gameDto) {
 
         if (!this.validationUtil.isValid(gameDto)) {
 
@@ -44,16 +44,19 @@ public class GameServiceImpl implements GameService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            return;
+            throw new IllegalArgumentException("Некорректные данные игры.");
         }
 
         Game game = this.modelMapper.map(gameDto, Game.class);
 
         Team homeTeam = this.teamService.findByName(gameDto.getTeamNameHome());
         Team visitTeam = this.teamService.findByName(gameDto.getTeamNameVisit());
+        if (homeTeam == null || visitTeam == null) {
+            throw new IllegalArgumentException("Одна или обе команды не найдены");
+        }
         game.setTeam(Set.of(homeTeam, visitTeam));
 
-        this.gameRepository.save(game);
+        return this.gameRepository.save(game).getId();
     }
 
 

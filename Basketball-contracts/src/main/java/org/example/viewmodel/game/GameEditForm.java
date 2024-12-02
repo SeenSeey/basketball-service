@@ -1,13 +1,15 @@
-package org.example.input;
+package org.example.viewmodel.game;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public record GameEditForm(
-        @NotBlank(message = "Идентификатор обязателен")
-        int gameId,
+        @NotNull
+        int id,
 
         @NotBlank(message = "Введите название домашней команды")
         String homeTeam,
@@ -24,7 +26,7 @@ public record GameEditForm(
         @NotBlank(message = "Введите название стадиона")
         String stadiumName,
 
-        @NotBlank(message = "Введите дату игры")
-        Date dateOfGame
+        @NotNull
+        LocalDate dateOfGame
 ) {
 }

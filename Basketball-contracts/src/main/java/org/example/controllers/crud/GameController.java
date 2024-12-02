@@ -2,9 +2,10 @@ package org.example.controllers.crud;
 
 import jakarta.validation.Valid;
 import org.example.controllers.base.BaseController;
-import org.example.input.GameCreateForm;
-import org.example.input.GameEditForm;
+import org.example.viewmodel.game.GameCreateForm;
+import org.example.viewmodel.game.GameEditForm;
 import org.example.viewmodel.base.SearchForm;
+import org.example.viewmodel.game.GameSearchForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public interface GameController extends BaseController {
 
     @GetMapping
     String listGames(
-            @ModelAttribute("form") SearchForm searchForm,
+            @ModelAttribute("form") GameSearchForm searchForm,
             Model model
     );
 
@@ -38,4 +39,7 @@ public interface GameController extends BaseController {
             BindingResult bindingResult,
             Model model
     );
+
+    @GetMapping("/{id}")
+    String gameDetails(@PathVariable int id, Model model);
 }

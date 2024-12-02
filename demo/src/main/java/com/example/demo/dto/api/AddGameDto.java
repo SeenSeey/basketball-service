@@ -2,6 +2,7 @@ package com.example.demo.dto.api;
 
 import jakarta.validation.constraints.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AddGameDto {
@@ -10,10 +11,10 @@ public class AddGameDto {
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
-    private Date dateOfGame;
+    private LocalDate dateOfGame;
 
     public AddGameDto( String teamNameHome, String teamNameVisit,
-                   int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, Date dateOfGame) {
+                   int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, LocalDate dateOfGame) {
         this.teamNameHome = teamNameHome;
         this.teamNameVisit = teamNameVisit;
         this.scoreHomeTeam = scoreHomeTeam;
@@ -23,14 +24,12 @@ public class AddGameDto {
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 3, message = "Team name can`t be so short")
     public String getTeamNameHome() {
         return teamNameHome;
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 3, message = "Team name can`t be so short")
     public String getTeamNameVisit() {
         return teamNameVisit;
@@ -49,15 +48,13 @@ public class AddGameDto {
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 2, message = "Stadium name must be more than two characters!")
     public String getStadiumName() {
         return stadiumName;
     }
 
     @NotNull
-    @NotEmpty
-    public Date getDateOfGame() {
+    public LocalDate getDateOfGame() {
         return dateOfGame;
     }
 
@@ -81,7 +78,7 @@ public class AddGameDto {
         this.stadiumName = stadiumName;
     }
 
-    public void setDateOfGame(Date dateOfGame) {
+    public void setDateOfGame(LocalDate dateOfGame) {
         this.dateOfGame = dateOfGame;
     }
 }

@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import jakarta.validation.constraints.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class GameDto {
@@ -11,10 +12,10 @@ public class GameDto {
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
-    private Date dateOfGame;
+    private LocalDate dateOfGame;
 
     public GameDto(int id, String teamNameHome, String teamNameVisit,
-                   int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, Date dateOfGame) {
+                   int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, LocalDate dateOfGame) {
         this.id = id;
         this.teamNameHome = teamNameHome;
         this.teamNameVisit = teamNameVisit;
@@ -32,41 +33,37 @@ public class GameDto {
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 3, message = "Team name can`t be so short")
     public String getTeamNameHome() {
         return teamNameHome;
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 3, message = "Team name can`t be so short")
     public String getTeamNameVisit() {
         return teamNameVisit;
     }
 
     @Min(value = 0, message = "The score can`t be negative")
-    @Max(value = 200)
+//    @Max(value = 200)
     public int getScoreHomeTeam() {
         return scoreHomeTeam;
     }
 
     @Min(value = 0, message = "The score can`t be negative")
-    @Max(value = 200)
+//    @Max(value = 200)
     public int getScoreVisitorTeam() {
         return scoreVisitorTeam;
     }
 
     @NotNull
-    @NotEmpty
     @Size(min = 2, message = "Stadium name must be more than two characters!")
     public String getStadiumName() {
         return stadiumName;
     }
 
-    @NotNull
-    @NotEmpty
-    public Date getDateOfGame() {
+//    @NotNull
+    public LocalDate getDateOfGame() {
         return dateOfGame;
     }
 
@@ -94,7 +91,7 @@ public class GameDto {
         this.stadiumName = stadiumName;
     }
 
-    public void setDateOfGame(Date dateOfGame) {
+    public void setDateOfGame(LocalDate dateOfGame) {
         this.dateOfGame = dateOfGame;
     }
 }

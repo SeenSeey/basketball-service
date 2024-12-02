@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/canvas}"></div>
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+        <div class="justify-content-center">
+          <h1>Добавить Игру</h1>
+        </div>
+        <form th:action="@{/games/create}"
+              th:method="post"
+              th:object="${form}"
+              class="m-md-auto w-50 pb-3">
+
+          <div class="mb-3">
+            <label class="form-label" for="homeTeam">Домашняя команда</label>
+            <input th:field="*{homeTeam}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="homeTeam"/>
+            <small th:if="${#fields.hasErrors('homeTeam')}"
+                   th:errors="*{homeTeam}"
+                   class="text-danger">Error massageе</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="visitTeam">Гостевая команда</label>
+            <input th:field="*{visitTeam}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="visitTeam"/>
+            <small th:if="${#fields.hasErrors('visitTeam')}"
+                   th:errors="*{visitTeam}"
+                   class="text-danger">Error massage</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="scoreHomeTeam">Счёт домашней команды</label>
+            <input th:field="*{scoreHomeTeam}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="0"
+                   class="form-control text-center"
+                   id="scoreHomeTeam"/>
+            <small th:if="${#fields.hasErrors('scoreHomeTeam')}"
+                   th:errors="*{scoreHomeTeam}"
+                   class="text-danger">Error massage</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="scoreVisitTeam">Счёт гостевой команды</label>
+            <input th:field="*{scoreVisitTeam}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="0"
+                   class="form-control text-center"
+                   id="scoreVisitTeam"/>
+            <small th:if="${#fields.hasErrors('scoreVisitTeam')}"
+                   th:errors="*{scoreVisitTeam}"
+                   class="text-danger">Error massage</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="stadiumName">Стадион</label>
+            <input th:field="*{stadiumName}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="stadiumName"/>
+            <small th:if="${#fields.hasErrors('stadiumName')}"
+                   th:errors="*{stadiumName}"
+                   class="text-danger">Error massage</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="dateOfGame">Дата игры</label>
+            <input th:field="*{dateOfGame}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   class="form-control text-center"
+                   id="dateOfGame"/>
+            <small th:if="${#fields.hasErrors('dateOfGame')}"
+                   th:errors="*{dateOfGame}"
+                   class="text-danger">Error massage</small>
+          </div>
+
+          <button type="submit" class="btn btn-secondary">Создать игру</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{fragments/footer}"/>
+</body>
+</html>

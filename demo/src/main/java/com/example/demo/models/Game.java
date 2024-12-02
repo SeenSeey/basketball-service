@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,14 +14,15 @@ public class Game extends BaseEntity {
     private int scoreHomeTeam;
     private int scoreVisitorTeam;
     private String stadiumName;
-    private Date dateOfGame;
+    private LocalDate dateOfGame;
 
     protected Game() {}
 
-    public Game(int scoreHomeTeam, int scoreVisitorTeam, String stadiumName) {
+    public Game(int scoreHomeTeam, int scoreVisitorTeam, String stadiumName, LocalDate dateOfGame) {
         this.scoreHomeTeam = scoreHomeTeam;
         this.scoreVisitorTeam = scoreVisitorTeam;
         this.stadiumName = stadiumName;
+        this.dateOfGame = dateOfGame;
     }
 
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
@@ -54,7 +56,7 @@ public class Game extends BaseEntity {
     }
 
     @Column(name = "date_of_game")
-    public Date getDateOfGame() {
+    public LocalDate getDateOfGame() {
         return dateOfGame;
     }
 
@@ -78,7 +80,7 @@ public class Game extends BaseEntity {
         this.stadiumName = stadiumName;
     }
 
-    public void setDateOfGame(Date dateOfGame) {
+    public void setDateOfGame(LocalDate dateOfGame) {
         this.dateOfGame = dateOfGame;
     }
 }

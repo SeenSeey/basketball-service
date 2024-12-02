@@ -1,8 +1,11 @@
-package org.example.input;
+package org.example.viewmodel.game;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public record GameCreateForm (
@@ -21,7 +24,7 @@ public record GameCreateForm (
     @NotBlank(message = "Введите название стадиона")
     String stadiumName,
 
-    @NotBlank(message = "Введите дату игры")
-    Date dateOfGame
+//    @NotNull
+    LocalDate dateOfGame
 ) {
 }

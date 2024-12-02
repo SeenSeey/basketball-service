@@ -1,15 +1,16 @@
 package com.example.demo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class LastGameDto {
     private String teamNameHome;
     private int scoreHomeTeam;
-    private Date dateOfGame;
+    private LocalDate dateOfGame;
     private int scoreVisitorTeam;
     private String teamNameVisit;
 
-    public LastGameDto(String teamNameHome, int scoreHomeTeam, Date dateOfGame, int scoreVisitorTeam, String teamNameVisit) {
+    public LastGameDto(String teamNameHome, int scoreHomeTeam, LocalDate dateOfGame, int scoreVisitorTeam, String teamNameVisit) {
         this.teamNameHome = teamNameHome;
         this.scoreHomeTeam = scoreHomeTeam;
         this.dateOfGame = dateOfGame;
@@ -25,7 +26,7 @@ public class LastGameDto {
         return scoreHomeTeam;
     }
 
-    public Date getDateOfGame() {
+    public LocalDate getDateOfGame() {
         return dateOfGame;
     }
 
@@ -45,7 +46,7 @@ public class LastGameDto {
         this.scoreHomeTeam = scoreHomeTeam;
     }
 
-    public void setDateOfGame(Date dateOfGame) {
+    public void setDateOfGame(LocalDate dateOfGame) {
         this.dateOfGame = dateOfGame;
     }
 
