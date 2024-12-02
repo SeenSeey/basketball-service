@@ -5,16 +5,17 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AddContractDto {
     private int playerId;
     private String team;
     private int salaryPerYear;
-    private Date contractStartDate;
-    private Date contractEndDate;
+    private LocalDate contractStartDate;
+    private LocalDate contractEndDate;
 
-    public AddContractDto(int id, int playerId, String team, int salaryPerYear, Date contractStartDate, Date contractEndDate) {
+    public AddContractDto(int playerId, String team, int salaryPerYear, LocalDate contractStartDate, LocalDate contractEndDate) {
         this.playerId = playerId;
         this.team = team;
         this.salaryPerYear = salaryPerYear;
@@ -41,14 +42,12 @@ public class AddContractDto {
     }
 
     @NotNull
-    @NotEmpty
-    public Date getContractStartDate() {
+    public LocalDate getContractStartDate() {
         return contractStartDate;
     }
 
     @NotNull
-    @NotEmpty
-    public Date getContractEndDate() {
+    public LocalDate getContractEndDate() {
         return contractEndDate;
     }
 
@@ -64,11 +63,11 @@ public class AddContractDto {
         this.salaryPerYear = salaryPerYear;
     }
 
-    public void setContractStartDate(Date contractStartDate) {
+    public void setContractStartDate(LocalDate contractStartDate) {
         this.contractStartDate = contractStartDate;
     }
 
-    public void setContractEndDate(Date contractEndDate) {
+    public void setContractEndDate(LocalDate contractEndDate) {
         this.contractEndDate = contractEndDate;
     }
 }

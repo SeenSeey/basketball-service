@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -10,12 +11,12 @@ public class Contract extends BaseEntity {
     private Player player;
     private Team team;
     private int salaryPerYear;
-    private Date contractStartDate;
-    private Date contractEndDate;
+    private LocalDate contractStartDate;
+    private LocalDate contractEndDate;
 
     protected Contract() {}
 
-    public Contract(int salaryPerYear, Date contractStartDate, Date contractEndDate) {
+    public Contract(int salaryPerYear, LocalDate contractStartDate, LocalDate contractEndDate) {
         this.salaryPerYear = salaryPerYear;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
@@ -39,12 +40,12 @@ public class Contract extends BaseEntity {
     }
 
     @Column(name = "contract_start_date")
-    public Date getContractStartDate() {
+    public LocalDate getContractStartDate() {
         return contractStartDate;
     }
 
     @Column(name = "contract_end_date")
-    public Date getContractEndDate() {
+    public LocalDate getContractEndDate() {
         return contractEndDate;
     }
 
@@ -60,11 +61,11 @@ public class Contract extends BaseEntity {
         this.salaryPerYear = salaryPerYear;
     }
 
-    public void setContractStartDate(Date contractStartDate) {
+    public void setContractStartDate(LocalDate contractStartDate) {
         this.contractStartDate = contractStartDate;
     }
 
-    public void setContractEndDate(Date contractEndDate) {
+    public void setContractEndDate(LocalDate contractEndDate) {
         this.contractEndDate = contractEndDate;
     }
 }

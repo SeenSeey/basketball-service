@@ -2,21 +2,18 @@ package org.example.controllers.crud;
 
 import jakarta.validation.Valid;
 import org.example.controllers.base.BaseController;
-import org.example.input.ContractCreateForm;
-import org.example.viewmodel.base.SearchForm;
+import org.example.viewmodel.contract.ContractCreateForm;
+import org.example.viewmodel.contract.ContractSearchForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/contracts")
 public interface ContractController extends BaseController {
 
     @GetMapping
     String listContracts(
-            @ModelAttribute("form") SearchForm searchForm,
+            @ModelAttribute("form") ContractSearchForm searchForm,
             Model model
     );
 
@@ -29,4 +26,7 @@ public interface ContractController extends BaseController {
             BindingResult bindingResult,
             Model model
     );
+
+    @GetMapping("/{id}")
+    String contractDetails(@PathVariable int id, Model model);
 }

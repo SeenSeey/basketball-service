@@ -38,7 +38,7 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public void addContract(AddContractDto contractDto) {
+    public int addContract(AddContractDto contractDto) {
 
         if (!this.validationUtil.isValid(contractDto)) {
 
@@ -47,7 +47,6 @@ public class ContractServiceImpl implements ContractService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            return;
         }
 
         Contract contract = this.modelMapper.map(contractDto, Contract.class);
@@ -55,12 +54,12 @@ public class ContractServiceImpl implements ContractService {
         contract.setPlayer(this.playerService.findById(contractDto.getPlayerId()));
         contract.setTeam(this.teamService.findByName(contractDto.getTeam()));
 
-        this.contractRepository.save(contract);
+        return this.contractRepository.save(contract).getId();
     }
 
     @Override
     public Page<ContractDto> getContracts(int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id"));
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Order.desc("contractEndDate")));
         Page<Contract> contractPage = contractRepository.findAll(pageable);
 
         return contractPage.map(contract -> new ContractDto(

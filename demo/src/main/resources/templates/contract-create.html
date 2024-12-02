@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/canvas}"></div>
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+        <div class="justify-content-center">
+          <h1>Добавить Контракт</h1>
+        </div>
+        <form th:action="@{/contracts/create}"
+              th:method="post"
+              th:object="${form}"
+              class="m-md-auto w-50 pb-3">
+
+          <div class="mb-3">
+            <label class="form-label" for="playerId">Игрок ID</label>
+            <input th:field="*{playerId}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="1"
+                   class="form-control text-center"
+                   id="playerId"/>
+            <small th:if="${#fields.hasErrors('playerId')}"
+                   th:errors="*{playerId}"
+                   class="text-danger">>Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="team">Команда</label>
+            <input th:field="*{team}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control text-center"
+                   id="team"/>
+            <small th:if="${#fields.hasErrors('team')}"
+                   th:errors="*{team}"
+                   class="text-danger">>Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="salaryPerYear">Годовая зарплата</label>
+            <input th:field="*{salaryPerYear}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   min="0"
+                   class="form-control text-center"
+                   id="salaryPerYear"/>
+            <small th:if="${#fields.hasErrors('salaryPerYear')}"
+                   th:errors="*{salaryPerYear}"
+                   class="text-danger">>Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="contractStartDate">Дата начала контракта</label>
+            <input th:field="*{contractStartDate}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   class="form-control text-center"
+                   id="contractStartDate"/>
+            <small th:if="${#fields.hasErrors('contractStartDate')}"
+                   th:errors="*{contractStartDate}"
+                   class="text-danger">>Error message</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="contractEndDate">Дата окончания контракта</label>
+            <input th:field="*{contractEndDate}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   class="form-control text-center"
+                   id="contractEndDate"/>
+            <small th:if="${#fields.hasErrors('contractEndDate')}"
+                   th:errors="*{contractEndDate}"
+                   class="text-danger">Error message</small>
+          </div>
+
+
+          <button type="submit" class="btn btn-secondary">Создать контракт</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{fragments/footer}"/>
+</body>
+</html>

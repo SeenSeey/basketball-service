@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ContractService {
 //    List<ContractDto> findContractByPlayerId(int id);
-    void addContract(AddContractDto contractDto);
+    int addContract(AddContractDto contractDto);
     Page<ContractDto> getContracts(int page, int size);
     ContractDto getContract(int id);
 }

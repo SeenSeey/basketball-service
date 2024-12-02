@@ -75,4 +75,9 @@ public class Team extends BaseEntity {
     public void setLoosesInSeason(int loosesInSeason) {
         this.loosesInSeason = loosesInSeason;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
