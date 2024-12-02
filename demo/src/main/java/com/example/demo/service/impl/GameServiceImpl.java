@@ -90,7 +90,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Page<GameDto> getGames(int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id"));
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Order.desc("dateOfGame")));
         Page<Game> gamePage = gameRepository.findAll(pageable);
 
         return gamePage.map(game -> {
