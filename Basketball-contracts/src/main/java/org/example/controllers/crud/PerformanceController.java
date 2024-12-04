@@ -2,9 +2,10 @@ package org.example.controllers.crud;
 
 import jakarta.validation.Valid;
 import org.example.controllers.base.BaseController;
-import org.example.input.PerformanceCreateForm;
-import org.example.input.PerformanceEditForm;
+import org.example.viewmodel.performance.PerformanceCreateForm;
+import org.example.viewmodel.performance.PerformanceEditForm;
 import org.example.viewmodel.base.SearchForm;
+import org.example.viewmodel.performance.PerformanceSearchForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public interface PerformanceController extends BaseController {
 
     @GetMapping
     String listPerformances(
-            @ModelAttribute("form") SearchForm searchForm,
+            @ModelAttribute("form") PerformanceSearchForm searchForm,
             Model model
     );
 
@@ -38,4 +39,7 @@ public interface PerformanceController extends BaseController {
             BindingResult bindingResult,
             Model model
     );
+
+    @GetMapping("/{id}")
+    String performanceDetails(@PathVariable int id, Model model);
 }

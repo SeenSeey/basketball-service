@@ -38,7 +38,7 @@ public class PerformanceServiceImpl implements PerformanceService {
     }
 
     @Override
-    public void addPerformance(AddPerformanceDto performanceDto) {
+    public int addPerformance(AddPerformanceDto performanceDto) {
 
         if (!this.validationUtil.isValid(performanceDto)) {
 
@@ -47,7 +47,6 @@ public class PerformanceServiceImpl implements PerformanceService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            return;
         }
 
         Performance performance = this.modelMapper.map(performanceDto, Performance.class);
@@ -55,7 +54,7 @@ public class PerformanceServiceImpl implements PerformanceService {
         performance.setPlayer(this.playerService.findById(performanceDto.getPlayerId()));
         performance.setGame(this.gameService.findById(performanceDto.getGameId()));
 
-        this.performanceRepository.save(performance);
+        return this.performanceRepository.save(performance).getId();
     }
 
     @Override

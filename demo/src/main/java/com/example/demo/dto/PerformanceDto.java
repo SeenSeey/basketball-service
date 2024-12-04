@@ -29,13 +29,11 @@ public class PerformanceDto {
     }
 
     @NotNull
-    @NotEmpty
     public int getPlayerId() {
         return playerId;
     }
 
     @NotNull
-    @NotEmpty
     public int getGameId() {
         return gameId;
     }

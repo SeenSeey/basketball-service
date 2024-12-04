@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/canvas"></div>
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+        <div class="justify-content-center">
+          <h1>Данные статистики</h1>
+        </div>
+        <div class="row bg-light rounded">
+          <h2>Статистика</h2>
+          <h4 th:text="'ID: ' + ${model.performance.id}"></h4>
+          <h4 th:text="'Игрок ID: ' + ${model.performance.playerId}"></h4>
+          <h4 th:text="'Игра ID: ' + ${model.performance.gameId}"></h4>
+          <h4 th:text="'Очки: ' + ${model.performance.points}"></h4>
+          <h4 th:text="'Блоки: ' + ${model.performance.blocks}"></h4>
+          <h4 th:text="'Передачи: ' + ${model.performance.passes}"></h4>
+          <h4 th:text="'Трёхочковые: ' + ${model.performance.threePointsShots}"></h4>
+        </div>
+        <div class="mt-2">
+          <a class="btn btn-success"
+             th:href="@{/performances}">Назад к статистикам</a>
+        </div>
+      </main>
+    </div>
+  </div>
+</main>
+<footer th:replace="fragments/footer"/>
+</body>
+</html>
