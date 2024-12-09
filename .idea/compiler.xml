@@ -12,6 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="basketball-contracts" target="18" />
+      <module name="basketball-service" target="1.5" />
       <module name="bskt-cntrcts" target="18" />
       <module name="demo" target="18" />
     </bytecodeTargetLevel>

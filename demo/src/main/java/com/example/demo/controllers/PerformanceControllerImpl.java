@@ -1,12 +1,12 @@
 package com.example.demo.controllers;
 
+import com.example.basketball_contracts.controllers.PerformanceController;
+import com.example.basketball_contracts.viewmodel.base.BaseViewModel;
+import com.example.basketball_contracts.viewmodel.performance.*;
 import com.example.demo.dto.PerformanceDto;
 import com.example.demo.dto.api.AddPerformanceDto;
 import com.example.demo.service.PerformanceService;
 import jakarta.validation.Valid;
-import org.example.controllers.crud.PerformanceController;
-import org.example.viewmodel.performance.*;
-import org.example.viewmodel.base.BaseViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

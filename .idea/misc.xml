@@ -5,7 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$USER_HOME$/IdeaProjects/Basketball-contracts/pom.xml" />
-        <option value="$PROJECT_DIR$/Basketball-contracts/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/basketball-contracts/pom.xml" />
       </list>
     </option>
   </component>

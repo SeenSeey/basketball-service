@@ -49,7 +49,7 @@ public class HomePageRepositoryImpl implements HomePageRepository {
                 "FROM Performance perf " +
                 "JOIN perf.game g " +
                 "JOIN perf.player p " +
-                "JOIN p.contracts c " +
+                "JOIN p.contract c " +
                 "JOIN c.team t " +
                 "WHERE YEAR(g.dateOfGame) = YEAR(CURRENT_DATE) " +
                 "AND c.contractStartDate <= CURRENT_DATE " +

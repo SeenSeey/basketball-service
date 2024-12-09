@@ -31,7 +31,7 @@
                   th:each="pageNumber : ${#numbers.sequence(1, model.totalPages)}"
                   th:classappend="${pageNumber == form.page} ? 'active'">
                 <a class="page-link"
-                   th:href="@{/performances(page=${pageNumber}, size=${form.size}, searchTerm=${form.searchTerm})}"
+                   th:href="@{/performances(page=${pageNumber}, size=${form.size})}"
                    th:text="${pageNumber}">1</a>
               </li>
             </ul>

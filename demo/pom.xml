@@ -10,15 +10,28 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.example</groupId>
+<!--	<parent>-->
+<!--		<groupId>basket-service</groupId>-->
+<!--		<artifactId>parent-project</artifactId>-->
+<!--		<version>0.0.2-SNAPSHOT</version>-->
+<!--	</parent>-->
+
+
+	<groupId>demo</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+
+<!--	<packaging>pom</packaging>-->
+
+<!--	<modules>-->
+<!--		<module>../basketball-contracts</module>-->
+<!--	</modules>-->
 
 	<dependencies>
 		<dependency>
@@ -61,7 +74,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.example</groupId>
+			<groupId>contracts</groupId>
 			<artifactId>basketball-contracts</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

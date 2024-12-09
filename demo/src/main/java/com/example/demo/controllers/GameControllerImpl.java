@@ -1,12 +1,13 @@
 package com.example.demo.controllers;
 
+import com.example.basketball_contracts.controllers.GameController;
+import com.example.basketball_contracts.viewmodel.base.BaseViewModel;
+import com.example.basketball_contracts.viewmodel.game.*;
 import com.example.demo.dto.GameDto;
 import com.example.demo.dto.api.AddGameDto;
 import com.example.demo.service.GameService;
 import jakarta.validation.Valid;
-import org.example.controllers.crud.GameController;
-import org.example.viewmodel.game.*;
-import org.example.viewmodel.base.BaseViewModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,6 +74,7 @@ public class GameControllerImpl implements GameController {
         return "game-create";
     }
 
+    
     @Override
     @PostMapping("/create")
     public String createGame(@Valid @ModelAttribute("form") GameCreateForm form,

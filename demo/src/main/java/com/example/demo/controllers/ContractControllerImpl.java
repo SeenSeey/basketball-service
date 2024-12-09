@@ -1,11 +1,11 @@
 package com.example.demo.controllers;
 
+import com.example.basketball_contracts.controllers.ContractController;
+import com.example.basketball_contracts.viewmodel.base.BaseViewModel;
+import com.example.basketball_contracts.viewmodel.contract.*;
 import com.example.demo.dto.api.AddContractDto;
 import com.example.demo.service.ContractService;
 import jakarta.validation.Valid;
-import org.example.controllers.crud.ContractController;
-import org.example.viewmodel.contract.*;
-import org.example.viewmodel.base.BaseViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

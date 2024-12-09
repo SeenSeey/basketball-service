@@ -1,13 +1,13 @@
 package com.example.demo.controllers;
 
+import com.example.basketball_contracts.controllers.TeamController;
+import com.example.basketball_contracts.viewmodel.base.BaseViewModel;
+import com.example.basketball_contracts.viewmodel.base.SearchForm;
+import com.example.basketball_contracts.viewmodel.team.*;
 import com.example.demo.dto.TeamDto;
 import com.example.demo.dto.api.AddTeamDto;
 import com.example.demo.service.TeamService;
 import jakarta.validation.Valid;
-import org.example.controllers.crud.TeamController;
-import org.example.viewmodel.team.*;
-import org.example.viewmodel.base.BaseViewModel;
-import org.example.viewmodel.base.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

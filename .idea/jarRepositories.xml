@@ -16,5 +16,10 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="basketball-contracts" />
+      <option name="name" value="basketball-contracts" />
+      <option name="url" value="file:C:\Третий курс\For programming\basketball-service\demo/../basketball-contracts&gt;" />
+    </remote-repository>
   </component>
 </project>
