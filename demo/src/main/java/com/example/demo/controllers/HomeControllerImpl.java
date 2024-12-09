@@ -29,7 +29,7 @@ public class HomeControllerImpl implements HomeController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping()
     public String homePage(Model model) {
         var games = homePageService.getLastFourGames();
         var gameViewModels = games.stream()

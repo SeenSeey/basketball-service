@@ -9,5 +9,5 @@ public interface BestPlayersController extends BaseController {
 
     //    Отображает кастомную страницу с пятью лучшими игроками сезона
     @GetMapping()
-    String index(Model model);
+    String getPlayers(Model model);
 }
