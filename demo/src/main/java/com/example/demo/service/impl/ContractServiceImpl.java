@@ -8,6 +8,7 @@ import com.example.demo.service.ContractService;
 import com.example.demo.service.PlayerService;
 import com.example.demo.service.TeamService;
 import com.example.demo.utils.ValidationUtil;
+import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ContractServiceImpl implements ContractService {
@@ -49,10 +48,12 @@ public class ContractServiceImpl implements ContractService {
                     .forEach(System.out::println);
         }
 
-        Contract contract = this.modelMapper.map(contractDto, Contract.class);
-
+        Contract contract = new Contract();
         contract.setPlayer(this.playerService.findById(contractDto.getPlayerId()));
         contract.setTeam(this.teamService.findByName(contractDto.getTeam()));
+        contract.setSalaryPerYear(contractDto.getSalaryPerYear());
+        contract.setContractStartDate(contractDto.getContractStartDate());
+        contract.setContractEndDate(contractDto.getContractEndDate());
 
         return this.contractRepository.save(contract).getId();
     }
@@ -79,9 +80,4 @@ public class ContractServiceImpl implements ContractService {
 
         return this.modelMapper.map(contract, ContractDto.class);
     }
-
-//    @Override
-//    public List<ContractDto> findContractByPlayerId(int id) {
-//        return null;
-//    }
 }

@@ -22,7 +22,7 @@ public class Player extends BaseEntity {
         this.age = age;
     }
 
-    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "player")
     public Set<Contract> getContract() {
         return contract;
     }

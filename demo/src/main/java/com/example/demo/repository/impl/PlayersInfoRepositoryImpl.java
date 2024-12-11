@@ -19,7 +19,7 @@ public class PlayersInfoRepositoryImpl implements PlayerInfoRepository {
         String query = "SELECT p FROM Player p WHERE p.fullName LIKE :searchTerm";
 
         return entityManager.createQuery(query, Player.class)
-                .setParameter("searchQuery", "%" + searchTerm + "%")
+                .setParameter("searchTerm", "%" + searchTerm + "%")
                 .getResultList();
     }
 

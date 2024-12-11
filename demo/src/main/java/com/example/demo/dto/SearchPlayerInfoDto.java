@@ -1,9 +1,11 @@
 package com.example.demo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class SearchPlayerInfoDto {
+    private String fullName;
     private Double avgPoints;
     private Double avgPasses;
     private Double avgBlocks;
@@ -11,10 +13,11 @@ public class SearchPlayerInfoDto {
     private int maxPoints;
     private int maxPasses;
     private int maxBlocks;
-    private Date dateOfBestGame;
+    private LocalDate dateOfBestGame;
 
-    public SearchPlayerInfoDto(Double avgPoints, Double avgPasses, Double avgBlocks, List<String> teamNames,
-                               int maxPoints, int maxPasses, int maxBlocks, Date dateOfBestGame) {
+    public SearchPlayerInfoDto(String fullName, Double avgPoints, Double avgPasses, Double avgBlocks, List<String> teamNames,
+                               int maxPoints, int maxPasses, int maxBlocks, LocalDate dateOfBestGame) {
+        this.fullName = fullName;
         this.avgPoints = avgPoints;
         this.avgPasses = avgPasses;
         this.avgBlocks = avgBlocks;
@@ -26,6 +29,10 @@ public class SearchPlayerInfoDto {
     }
 
     public SearchPlayerInfoDto(){};
+
+    public String getFullName() {
+        return fullName;
+    }
 
     public Double getAvgPoints() {
         return avgPoints;
@@ -55,8 +62,12 @@ public class SearchPlayerInfoDto {
         return maxBlocks;
     }
 
-    public Date getDateOfBestGame() {
+    public LocalDate getDateOfBestGame() {
         return dateOfBestGame;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setAvgPoints(Double avgPoints) {
@@ -87,7 +98,7 @@ public class SearchPlayerInfoDto {
         this.maxBlocks = maxBlocks;
     }
 
-    public void setDateOfBestGame(Date dateOfBestGame) {
+    public void setDateOfBestGame(LocalDate dateOfBestGame) {
         this.dateOfBestGame = dateOfBestGame;
     }
 }

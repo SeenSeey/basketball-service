@@ -19,8 +19,8 @@ public class ContractRepositoryImpl implements ContractRepository {
 
     @Override
     public Contract save(Contract contract) {
-//        entityManager.persist(contract);
-        return entityManager.merge(contract);
+        entityManager.persist(contract);
+        return contract;
     }
 
     @Override

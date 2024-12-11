@@ -6,6 +6,7 @@ import com.example.demo.repository.PlayerInfoRepository;
 import com.example.demo.service.PlayersInfoService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +36,7 @@ public class PlayersInfoServiceImpl implements PlayersInfoService {
             List<String> teams = playerInfoRepository.teamsPlayed(player.getId());
 
             SearchPlayerInfoDto dto = new SearchPlayerInfoDto(
+                    player.getFullName(),
                     avgStat[0] != null ? (Double) avgStat[0] : 0.0,
                     avgStat[1] != null ? (Double) avgStat[1] : 0.0,
                     avgStat[2] != null ? (Double) avgStat[2] : 0.0,
@@ -42,7 +44,7 @@ public class PlayersInfoServiceImpl implements PlayersInfoService {
                     bestStat[0] != null ? (Integer) bestStat[0] : 0,
                     bestStat[1] != null ? (Integer) bestStat[1] : 0,
                     bestStat[2] != null ? (Integer) bestStat[2] : 0,
-                    (Date) bestStat[3]
+                    (LocalDate) bestStat[3]
             );
 
             searchInfo.add(dto);

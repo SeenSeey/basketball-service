@@ -27,7 +27,7 @@ public class Team extends BaseEntity {
         return game;
     }
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team")
     public Set<Contract> getContract() {
         return contract;
     }

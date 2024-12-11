@@ -3,7 +3,6 @@ package com.example.demo.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "contract")
@@ -14,7 +13,7 @@ public class Contract extends BaseEntity {
     private LocalDate contractStartDate;
     private LocalDate contractEndDate;
 
-    protected Contract() {}
+    public Contract() {}
 
     public Contract(int salaryPerYear, LocalDate contractStartDate, LocalDate contractEndDate) {
         this.salaryPerYear = salaryPerYear;

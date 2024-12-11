@@ -11,7 +11,7 @@ public record ContractCreateForm (
     @NotNull
     int playerId,
 
-    @NotBlank(message = "Введите id команды")
+    @NotBlank(message = "Введите название команды")
     String team,
 
     @Min(value = 0, message = "Зарпалата не может быть отрицательной")

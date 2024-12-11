@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/canvas}"></div>
+<main class="flex-shrink-0">
+    <div class="container">
+
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-column">
+                <div th:each="player : ${model.players}" class="border border-secondary border-2 rounded-5 p-3 mb-3">
+                    <div class="player-info d-flex justify-content-between align-items-center w-100">
+
+                        <h4>Игрок: <span th:text="${player.fullName}">Полное имя игрока</span></h4>
+
+                        <div>
+                            <p><strong>Среднее количество очков:</strong> <span th:text="${player.avPoints}">0.0</span></p>
+                            <p><strong>Среднее количество передач:</strong> <span th:text="${player.avAssists}">0.0</span></p>
+                            <p><strong>Среднее количество блоков:</strong> <span th:text="${player.avBlocks}">0.0</span></p>
+                        </div>
+
+                        <div>
+                            <p><strong>Команды:</strong></p>
+                            <ul>
+                                <li th:each="team : ${player.teamNames}" th:text="${team}">Команда</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p><strong>Дата лучшей игры:</strong>
+                                <span th:text="${player.dateBestGame}"></span>
+                            </p>
+                            <p><strong>Максимальное количество очков:</strong> <span th:text="${player.maxPoints}">0</span></p>
+                            <p><strong>Максимальное количество передач:</strong> <span th:text="${player.maxAssists}">0</span></p>
+                            <p><strong>Максимальное количество блоков:</strong> <span th:text="${player.maxBlocks}">0</span></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer}"/>
+</body>
+</html>

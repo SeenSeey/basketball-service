@@ -2,10 +2,11 @@ package com.example.basketball_contracts.viewmodel.searchInfo;
 
 import com.example.basketball_contracts.viewmodel.base.BaseViewModel;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record SearchPlayerInfoViewModel(
-        BaseViewModel base,
+        String fullName,
 
         Double avPoints,
         Double avAssists,
@@ -15,6 +16,7 @@ public record SearchPlayerInfoViewModel(
 
         int maxPoints,
         int maxAssists,
-        int maxBlocks
+        int maxBlocks,
+        LocalDate dateBestGame
 ) {
 }
