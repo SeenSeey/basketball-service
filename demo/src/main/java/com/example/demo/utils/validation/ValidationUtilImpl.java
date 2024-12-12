@@ -1,5 +1,6 @@
-package com.example.demo.utils;
+package com.example.demo.utils.validation;
 
+import com.example.demo.utils.validation.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;

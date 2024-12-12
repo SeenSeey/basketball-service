@@ -5,7 +5,7 @@ import com.example.demo.dto.api.AddTeamDto;
 import com.example.demo.models.Team;
 import com.example.demo.repository.TeamRepository;
 import com.example.demo.service.TeamService;
-import com.example.demo.utils.ValidationUtil;
+import com.example.demo.utils.validation.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TeamServiceImpl implements TeamService {

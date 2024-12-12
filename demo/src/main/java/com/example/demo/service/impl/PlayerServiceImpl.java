@@ -5,7 +5,7 @@ import com.example.demo.dto.api.AddPlayerDto;
 import com.example.demo.models.Player;
 import com.example.demo.repository.PlayerRepository;
 import com.example.demo.service.PlayerService;
-import com.example.demo.utils.ValidationUtil;
+import com.example.demo.utils.validation.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {

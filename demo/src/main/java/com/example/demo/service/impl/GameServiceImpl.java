@@ -7,7 +7,7 @@ import com.example.demo.models.Team;
 import com.example.demo.repository.GameRepository;
 import com.example.demo.service.GameService;
 import com.example.demo.service.TeamService;
-import com.example.demo.utils.ValidationUtil;
+import com.example.demo.utils.validation.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

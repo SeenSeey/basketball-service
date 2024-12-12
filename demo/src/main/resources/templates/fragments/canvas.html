@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,50 +18,85 @@
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav">
-      <hr>
-      <div class="text-muted">Найти сущность</div>
-      <hr>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/players">Найти игрока</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/teams">Найти команду</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/games">Найти игру</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/contracts">Найти конракт</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/performances">Найти статистику</a>
-      </li>
-      <hr>
+      <div>
+        <li class="nav-item">
+          <a class="nav-item nav-link text-dark" href="/">Домашняя страница!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link text-dark" href="/best">Топ 5 игроков сезона!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link text-dark" href="/search">Узнай о игроке!</a>
+        </li>
+      </div>
+
+      <div sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')">
+        <hr>
+        <div class="text-muted">Найти сущность</div>
+        <hr>
+
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/players">Найти игрока</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/teams">Найти команду</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')">
+          <a class="nav-item nav-link text-dark" href="/games">Найти игру</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/contracts">Найти конракт</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')">
+          <a class="nav-item nav-link text-dark" href="/performances">Найти статистику</a>
+        </li>
+        <hr>
 
 
-      <div class="text-muted">Создать сущность</div>
+        <div class="text-muted">Создать сущность</div>
+        <hr>
+
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/players/create">Создать игрока</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/teams/create">Создать команду</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')">
+          <a class="nav-item nav-link text-dark" href="/games/create">Создать игру</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-item nav-link text-dark" href="/contracts/create">Создать контракт</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')">
+          <a class="nav-item nav-link text-dark" href="/performances/create">Создать статистику</a>
+        </li>
+
+      </div>
+
       <hr>
 
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/players/create">Создать игрока</a>
+      <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <a class="nav-item nav-link text-dark" th:href="@{/users/register}">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/teams/create">Создать команду</a>
+      <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <a class="nav-item nav-link text-dark" th:href="@{/users/login}">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/games/create">Создать игру</a>
+
+      <li class="nav-item" sec:authorize="isAuthenticated()">
+        <a class="nav-item nav-link text-dark" th:href="@{/users/profile}">Profile</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/contracts/create">Создать контракт</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link text-dark" href="/performances/create">Создать статистику</a>
+      <li class="nav-item" sec:authorize="isAuthenticated()">
+        <form
+                th:method="post"
+                th:action="@{/users/logout}">
+          <input class="btn btn-link nav-link" type="submit" value="Logout">
+        </form>
       </li>
 
     </ul>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
