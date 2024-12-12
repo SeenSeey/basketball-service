@@ -21,13 +21,13 @@ public class Contract extends BaseEntity {
         this.contractEndDate = contractEndDate;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "player_id")
     public Player getPlayer() {
         return player;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "team_id")
     public Team getTeam() {
         return team;

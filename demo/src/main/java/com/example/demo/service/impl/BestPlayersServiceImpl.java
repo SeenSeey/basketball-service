@@ -18,7 +18,7 @@ public class BestPlayersServiceImpl implements BestPlayersService {
 
     @Override
     public List<BestPlayerThisSeasonDto> getBestPlayersThisSeason() {
-        List<Object[]> stat = bestPlayersRepository.findBestPlayersThisSeason();
+        List<Object[]> stat = this.bestPlayersRepository.findBestPlayersThisSeason();
 
         return stat.stream().map(player -> new BestPlayerThisSeasonDto(
                 (String) player[0],

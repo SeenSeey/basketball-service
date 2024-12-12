@@ -18,17 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class HomePageServiceImpl implements HomePageService {
     private final HomePageRepository homePageRepository;
-    private final ModelMapper modelMapper;
 
     @Autowired
-    public HomePageServiceImpl(HomePageRepository homePageRepository, ModelMapper modelMapper) {
+    public HomePageServiceImpl(HomePageRepository homePageRepository) {
         this.homePageRepository = homePageRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override
     public List<LastGameDto> getLastFourGames() {
-        List<Game> games = homePageRepository.findLastFourGames();
+        List<Game> games = this.homePageRepository.findLastFourGames();
 
         return games.stream()
                 .map(game -> {
@@ -56,7 +54,7 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Override
     public List<BestPlayerInLastGameDto> getTopPlayerForEachGame() {
-        List<Performance> performances = homePageRepository.findTopPerformancesForEachGame();
+        List<Performance> performances = this.homePageRepository.findTopPerformancesForEachGame();
 
         return performances.stream()
                 .map(performance -> new BestPlayerInLastGameDto(
@@ -70,7 +68,7 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Override
     public BestPlayerThisSeasonDto getBestPlayerThisSeason() {
-        Object[] stat = homePageRepository.findBestPlayerThisSeason();
+        Object[] stat = this.homePageRepository.findBestPlayerThisSeason();
 
         String fullName = (String) stat[0];
         Double avgPoints = (Double) stat[1];

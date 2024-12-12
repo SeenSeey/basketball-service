@@ -140,11 +140,6 @@ public class GameServiceImpl implements GameService {
         return gameDto;
     }
 
-//    @Override
-//    public List<GameDto> findGameByTeamName(String name) {
-//        return null;
-//    }
-
     @Override
     public Game findById(int id) {
         return this.gameRepository.findById(id).orElse(null);

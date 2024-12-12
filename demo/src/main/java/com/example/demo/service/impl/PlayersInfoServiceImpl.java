@@ -21,7 +21,7 @@ public class PlayersInfoServiceImpl implements PlayersInfoService {
 
     @Override
     public List<SearchPlayerInfoDto> getPlayersInfo(String searchTerm) {
-        List<Player> players = playerInfoRepository.findByNameContaining(searchTerm);
+        List<Player> players = this.playerInfoRepository.findByNameContaining(searchTerm);
 
         if (players.isEmpty()) {
             return new ArrayList<>();
@@ -31,9 +31,9 @@ public class PlayersInfoServiceImpl implements PlayersInfoService {
 
         for (Player player : players) {
 
-            Object[] avgStat = playerInfoRepository.avgPerformanceAllTime(player.getId());
-            Object[] bestStat = playerInfoRepository.findBestGameForPlayers(player.getId());
-            List<String> teams = playerInfoRepository.teamsPlayed(player.getId());
+            Object[] avgStat = this.playerInfoRepository.avgPerformanceAllTime(player.getId());
+            Object[] bestStat = this.playerInfoRepository.findBestGameForPlayers(player.getId());
+            List<String> teams = this.playerInfoRepository.teamsPlayed(player.getId());
 
             SearchPlayerInfoDto dto = new SearchPlayerInfoDto(
                     player.getFullName(),

@@ -53,7 +53,7 @@ public class AuthService {
     }
 
     public User getUser(String username) {
-        return userRepository.findUserByUsername(username)
+        return this.userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " was not found!"));
     }
 }
