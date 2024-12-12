@@ -3,12 +3,15 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.BestPlayerThisSeasonDto;
 import com.example.demo.repository.BestPlayersRepository;
 import com.example.demo.service.BestPlayersService;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class BestPlayersServiceImpl implements BestPlayersService {
     private final BestPlayersRepository bestPlayersRepository;
 
@@ -17,6 +20,7 @@ public class BestPlayersServiceImpl implements BestPlayersService {
     }
 
     @Override
+    @Cacheable("bestie")
     public List<BestPlayerThisSeasonDto> getBestPlayersThisSeason() {
         List<Object[]> stat = this.bestPlayersRepository.findBestPlayersThisSeason();
 

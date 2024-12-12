@@ -10,12 +10,15 @@ import com.example.demo.repository.HomePageRepository;
 import com.example.demo.service.HomePageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class HomePageServiceImpl implements HomePageService {
     private final HomePageRepository homePageRepository;
 
@@ -67,6 +70,7 @@ public class HomePageServiceImpl implements HomePageService {
     }
 
     @Override
+    @Cacheable("best_player")
     public BestPlayerThisSeasonDto getBestPlayerThisSeason() {
         Object[] stat = this.homePageRepository.findBestPlayerThisSeason();
 

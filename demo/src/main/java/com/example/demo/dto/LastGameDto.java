@@ -1,7 +1,6 @@
 package com.example.demo.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class LastGameDto {
     private String teamNameHome;

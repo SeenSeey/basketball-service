@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
-public class BestPlayerThisSeasonDto {
+import java.io.Serializable;
+
+public class BestPlayerThisSeasonDto implements Serializable {
     private String fullName;
     private Double avgPoints;
     private Double avgPasses;
@@ -13,6 +15,9 @@ public class BestPlayerThisSeasonDto {
         this.avgPasses = avgPasses;
         this.avgBlocks = avgBlocks;
         this.teamName = teamName;
+    }
+
+    public BestPlayerThisSeasonDto() {
     }
 
     public String getFullName() {

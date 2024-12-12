@@ -3,7 +3,6 @@ package com.example.demo.dto;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class GameDto {
     private int id;
@@ -45,13 +44,11 @@ public class GameDto {
     }
 
     @Min(value = 0, message = "The score can`t be negative")
-//    @Max(value = 200)
     public int getScoreHomeTeam() {
         return scoreHomeTeam;
     }
 
     @Min(value = 0, message = "The score can`t be negative")
-//    @Max(value = 200)
     public int getScoreVisitorTeam() {
         return scoreVisitorTeam;
     }
@@ -62,7 +59,6 @@ public class GameDto {
         return stadiumName;
     }
 
-//    @NotNull
     public LocalDate getDateOfGame() {
         return dateOfGame;
     }
