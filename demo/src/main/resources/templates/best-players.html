@@ -8,14 +8,14 @@
     <div class="container h-60">
         <div class="row mt-2 d-flex justify-content-center align-items-center">
             <div th:each="player, stat : ${model.bestPlayers}" class="col-md-4 p-2">
-                <div class="border border-secondary border-2 rounded-5 p-3 text-center">
+                <section class="rounded-5 p-3 text-center" style="box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); background-color: #f8f9fa;">
                     <h4>Игрок №[[${stat.index + 1}]]</h4>
                     <p th:text="${player.fullName}" class="text-center fs-5 fw-bold"></p>
                     <p th:text="'Очки: ' + ${player.avPoints}"></p>
                     <p th:text="'Пасы: ' +${player.avAssists}"></p>
                     <p th:text="'Блоки: ' + ${player.avBlocks}"></p>
                     <p th:text="${player.teamName}" class="text-center"></p>
-                </div>
+                </section>
             </div>
         </div>
 
@@ -28,11 +28,11 @@
 
 
     <div class="row mt-2">
-        <div class="border border-secondary border-2 p-3">
+        <section class="rounded-5 p-3" style="box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);">
             <div class="d-flex justify-content-between">
 
                 <!-- Первый контейнер -->
-                <div class="col-md-6 border-end border-3">
+                <div class="col-md-6">
                     <h4 class="text-center">Пять последних игр!</h4>
                     <div class="mt-4 d-flex justify-content-center">
                         <a class="btn btn-primary"
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </main>
 </body>
