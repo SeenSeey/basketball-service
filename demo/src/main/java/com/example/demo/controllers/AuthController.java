@@ -5,6 +5,9 @@ import com.example.demo.dto.UserRegistrationDto;
 import com.example.demo.models.User;
 import com.example.demo.service.impl.AuthService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
@@ -22,8 +25,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/users")
 public class AuthController {
-
     private AuthService authService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public AuthController(AuthService authService) {
@@ -37,6 +40,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String register() {
+        LOG.log(Level.INFO, "Registration for unregistered user");
         return "register";
     }
 
@@ -74,6 +78,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
+        LOG.log(Level.INFO, "Login for unregistered user");
         return "login";
     }
 
@@ -100,6 +105,7 @@ public class AuthController {
                 user.getAge()
         );
 
+        LOG.log(Level.INFO, "Show profile for " + principal.getName());
         model.addAttribute("user", userProfileView);
 
         return "profile";

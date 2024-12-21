@@ -7,16 +7,20 @@ import com.example.basketball_contracts.viewmodel.homePage.BestPlayerViewModel;
 import com.example.basketball_contracts.viewmodel.homePage.HomePageViewModel;
 import com.example.basketball_contracts.viewmodel.homePage.LastGameViewModel;
 import com.example.demo.service.HomePageService;
+import org.apache.logging.log4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/")
 public class HomeControllerImpl implements HomeController {
     private final HomePageService homePageService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public HomeControllerImpl(HomePageService homePageService) {
@@ -30,7 +34,7 @@ public class HomeControllerImpl implements HomeController {
 
     @Override
     @GetMapping()
-    public String homePage(Model model) {
+    public String homePage(Model model, Principal principal) {
         var games = homePageService.getLastFourGames();
         var gameViewModels = games.stream()
                 .map(g -> new LastGameViewModel(
@@ -67,6 +71,12 @@ public class HomeControllerImpl implements HomeController {
                 playerViewModels,
                 bestPlayerViewModel
         );
+
+        if (principal == null) {
+            LOG.log(Level.INFO, "Show Home Page for unregistered user");
+        } else {
+            LOG.log(Level.INFO, "Show Home Page for " + principal.getName());
+        }
 
         model.addAttribute("model", viewModel);
         return "home-page";

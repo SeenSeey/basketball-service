@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PlayerService {
-//    List<PlayerDto> findPlayerByTeamName(String name);
     int addPlayer(AddPlayerDto addPlayerDto);
     void updatePlayer(PlayerDto updatePlayerDto);
     Page<PlayerDto> getPlayers(String search, int page, int size);

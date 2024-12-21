@@ -5,8 +5,6 @@ import com.example.demo.repository.PlayerInfoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -37,7 +35,6 @@ public class PlayersInfoRepositoryImpl implements PlayerInfoRepository {
 
     @Override
     public List<String> teamsPlayed(int playerId) {
-
         String query = "SELECT DISTINCT t.name " +
                 "FROM Contract c " +
                 "JOIN c.team t " +

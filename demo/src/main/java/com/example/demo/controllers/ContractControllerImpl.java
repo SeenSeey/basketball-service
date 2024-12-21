@@ -6,18 +6,23 @@ import com.example.basketball_contracts.viewmodel.contract.*;
 import com.example.demo.dto.api.AddContractDto;
 import com.example.demo.service.ContractService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/contracts")
 public class ContractControllerImpl implements ContractController {
     private final ContractService contractService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public ContractControllerImpl(ContractService contractService) {
@@ -33,7 +38,7 @@ public class ContractControllerImpl implements ContractController {
 
     @Override
     @GetMapping()
-    public String listContracts(@ModelAttribute("form") ContractSearchForm form, Model model) {
+    public String listContracts(@ModelAttribute("form") ContractSearchForm form, Model model, Principal principal) {
         var page = form.page() != null ? form.page() : 1;
         var size = form.size() != null ? form.size() : 3;
         form = new ContractSearchForm(page, size);
@@ -56,6 +61,8 @@ public class ContractControllerImpl implements ContractController {
                 contractsPage.getTotalPages()
         );
 
+        LOG.log(Level.INFO, "Show list of Contracts for  " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", form);
         return "contract-list";
@@ -63,10 +70,13 @@ public class ContractControllerImpl implements ContractController {
 
     @Override
     @GetMapping("/create")
-    public String createContractForm(Model model) {
+    public String createContractForm(Model model, Principal principal) {
         var viewModel = new ContractCreateViewModel(
                 createBaseViewModel("Создание контракта")
         );
+
+        LOG.log(Level.INFO, "Show Create Contract Form for " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new ContractCreateForm(0, "", 0, LocalDate.now(), LocalDate.now()));
         return "contract-create";
@@ -76,11 +86,12 @@ public class ContractControllerImpl implements ContractController {
     @PostMapping("/create")
     public String createContract(@Valid @ModelAttribute("form") ContractCreateForm form,
                                  BindingResult bindingResult,
-                                 Model model) {
+                                 Model model,
+                                 Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new ContractCreateViewModel(
-                    createBaseViewModel("Сщздание контракта")
+                    createBaseViewModel("Создание контракта")
             );
             model.addAttribute("model", viewModel);
             model.addAttribute("form", form);
@@ -94,13 +105,16 @@ public class ContractControllerImpl implements ContractController {
                 form.contractStartDate(),
                 form.contractEndDate()
         );
+
+        LOG.log(Level.INFO, "Create new Contract by " + principal.getName());
+
         var id = contractService.addContract(dto);
         return "redirect:/contracts/" + id;
     }
 
     @Override
     @GetMapping("/{id}")
-    public String contractDetails(@PathVariable int id, Model model) {
+    public String contractDetails(@PathVariable int id, Model model, Principal principal) {
         var contract = contractService.getContract(id);
         var viewModel = new ContractDetailsViewModel(
                 createBaseViewModel("Контракт"),
@@ -113,6 +127,8 @@ public class ContractControllerImpl implements ContractController {
                         contract.getContractEndDate()
                 )
         );
+
+        LOG.log(Level.INFO, "Show Contract Details for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         return "contract-details";
