@@ -8,16 +8,22 @@ import com.example.demo.dto.TeamDto;
 import com.example.demo.dto.api.AddTeamDto;
 import com.example.demo.service.TeamService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/teams")
 public class TeamControllerImpl implements TeamController {
     private final TeamService teamService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public TeamControllerImpl(TeamService teamService) {
@@ -31,7 +37,7 @@ public class TeamControllerImpl implements TeamController {
 
     @Override
     @GetMapping()
-    public String listTeams(@ModelAttribute("form") SearchForm form, Model model) {
+    public String listTeams(@ModelAttribute("form") SearchForm form, Model model, Principal principal) {
         var searchTerm = form.searchTerm() != null ? form.searchTerm() : "";
         var page = form.page() != null ? form.page() : 1;
         var size = form.size() != null ? form.size() : 3;
@@ -48,6 +54,8 @@ public class TeamControllerImpl implements TeamController {
                 teamsPage.getTotalPages()
         );
 
+        LOG.log(Level.INFO, "Show list of Teams for " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", form);
         return "team-list";
@@ -55,10 +63,12 @@ public class TeamControllerImpl implements TeamController {
 
     @Override
     @GetMapping("/create")
-    public String createTeamForm(Model model) {
+    public String createTeamForm(Model model, Principal principal) {
         var viewModel = new TeamCreateViewModel(
                 createBaseViewModel("Создание команды")
         );
+
+        LOG.log(Level.INFO, "Show Create Team Form for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new TeamCreateForm("", "", 0, 0));
@@ -69,7 +79,8 @@ public class TeamControllerImpl implements TeamController {
     @PostMapping("/create")
     public String createTeam(@Valid @ModelAttribute("form") TeamCreateForm form,
                              BindingResult bindingResult,
-                             Model model) {
+                             Model model,
+                             Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new TeamCreateViewModel(
@@ -82,16 +93,21 @@ public class TeamControllerImpl implements TeamController {
 
         AddTeamDto dto = new AddTeamDto(form.name(), form.conference(), form.winsInSeason(), form.loosesInSeason());
         var id = teamService.addTeam(dto);
+
+        LOG.log(Level.INFO, "Create new Team by " + principal.getName());
+
         return "redirect:/teams/" + id;
     }
 
     @Override
     @GetMapping("/edit/{id}")
-    public String editTeamForm(int id, Model model) {
+    public String editTeamForm(int id, Model model, Principal principal) {
         var team = teamService.getTeam(id);
         var viewModel = new TeamEditViewModel(
                 createBaseViewModel("Редактирование команды")
         );
+
+        LOG.log(Level.INFO, "Show Edit Player Form for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new TeamEditForm(
@@ -110,7 +126,8 @@ public class TeamControllerImpl implements TeamController {
     public String editTeam(@PathVariable int id,
                            @Valid @ModelAttribute TeamEditForm form,
                            BindingResult bindingResult,
-                           Model model) {
+                           Model model,
+                           Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new TeamEditViewModel(
@@ -123,16 +140,21 @@ public class TeamControllerImpl implements TeamController {
 
         TeamDto dto = new TeamDto(form.id(), form.name(), form.conference(), form.winsInSeason(), form.loosesInSeason());
         teamService.updateTeam(dto);
+
+        LOG.log(Level.INFO, "Edit new Team by " + principal.getName());
+
         return "redirect:/teams/" + form.id();
     }
 
     @Override
-    public String teamDetails(@PathVariable int id, Model model) {
+    public String teamDetails(@PathVariable int id, Model model, Principal principal) {
         var team = teamService.getTeam(id);
         var viewModel = new TeamDetailsViewModel(
                 createBaseViewModel("Книга"),
                 new TeamViewModel(team.getId(), team.getName(), team.getConference(), team.getWinsInSeason(), team.getLoosesInSeason())
         );
+
+        LOG.log(Level.INFO, "Show Player Details for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         return "team-details";

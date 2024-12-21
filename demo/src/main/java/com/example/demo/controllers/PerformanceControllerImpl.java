@@ -7,16 +7,22 @@ import com.example.demo.dto.PerformanceDto;
 import com.example.demo.dto.api.AddPerformanceDto;
 import com.example.demo.service.PerformanceService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/performances")
 public class PerformanceControllerImpl implements PerformanceController {
     private final PerformanceService performanceService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public PerformanceControllerImpl(PerformanceService performanceService) {
@@ -30,7 +36,7 @@ public class PerformanceControllerImpl implements PerformanceController {
 
     @Override
     @GetMapping()
-    public String listPerformances(@ModelAttribute("form") PerformanceSearchForm form, Model model) {
+    public String listPerformances(@ModelAttribute("form") PerformanceSearchForm form, Model model, Principal principal) {
         var page = form.page() != null ? form.page() : 1;
         var size = form.size() != null ? form.size() : 3;
         form = new PerformanceSearchForm(page, size);
@@ -53,6 +59,8 @@ public class PerformanceControllerImpl implements PerformanceController {
                 perfPage.getTotalPages()
         );
 
+        LOG.log(Level.INFO, "Show list of Performances for " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", form);
         return "performance-list";
@@ -60,10 +68,13 @@ public class PerformanceControllerImpl implements PerformanceController {
 
     @Override
     @GetMapping("/create")
-    public String createPerformanceForm(Model model) {
+    public String createPerformanceForm(Model model, Principal principal) {
         var viewModel = new PerformanceCreateViewModel(
                 createBaseViewModel("Создание статистики")
         );
+
+        LOG.log(Level.INFO, "Show Create Performance Form for " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new PerformanceCreateForm(0, 0, 0, 0, 0, 0));
         return "performance-create";
@@ -73,7 +84,8 @@ public class PerformanceControllerImpl implements PerformanceController {
     @PostMapping("/create")
     public String createPerformance(@Valid @ModelAttribute("form") PerformanceCreateForm form,
                                     BindingResult bindingResult,
-                                    Model model) {
+                                    Model model,
+                                    Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new PerformanceCreateViewModel(
@@ -93,17 +105,23 @@ public class PerformanceControllerImpl implements PerformanceController {
                 form.passes(),
                 form.threePointsShots()
         );
+
         var id = performanceService.addPerformance(dto);
+
+        LOG.log(Level.INFO, "Create new Performance by " + principal.getName());
+
         return "redirect:/performances/" + id;
     }
 
     @Override
     @GetMapping("/edit/{id}")
-    public String editPerformanceForm(int id, Model model) {
+    public String editPerformanceForm(int id, Model model, Principal principal) {
         var performance = performanceService.getPerformance(id);
         var viewModel = new PerformanceEditViewModel(
                 createBaseViewModel("Редактирование статистики")
         );
+
+        LOG.log(Level.INFO, "Show Edit Performance Form for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new PerformanceEditForm(
@@ -124,7 +142,8 @@ public class PerformanceControllerImpl implements PerformanceController {
     public String editPerformance(@PathVariable int id,
                                   @Valid @ModelAttribute("form") PerformanceEditForm form,
                                   BindingResult bindingResult,
-                                  Model model) {
+                                  Model model,
+                                  Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new PerformanceEditViewModel(
@@ -144,13 +163,17 @@ public class PerformanceControllerImpl implements PerformanceController {
                 form.passes(),
                 form.threePointsShots()
         );
+
         performanceService.updatePerformance(dto);
+
+        LOG.log(Level.INFO, "Edit Performance by " + principal.getName());
+
         return "redirect:/performances/" + form.id();
     }
 
     @Override
     @GetMapping("/{id}")
-    public String performanceDetails(@PathVariable int id, Model model) {
+    public String performanceDetails(@PathVariable int id, Model model, Principal principal) {
         var perf = performanceService.getPerformance(id);
         var viewModel = new PerformanceDetailsViewModel(
                 createBaseViewModel("Детали статистики"),
@@ -164,6 +187,8 @@ public class PerformanceControllerImpl implements PerformanceController {
                         perf.getThreePointsShots()
                 )
         );
+
+        LOG.log(Level.INFO, "Show Performance details for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         return "performance-details";

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <body class="d-flex flex-column h-100">
-<div th:replace="fragments/canvas"></div>
+<div th:replace="~{fragments/canvas}"></div>
 <main class="flex-shrink-0">
   <div class="container">
     <div class="row">
@@ -89,6 +89,6 @@
     </div>
   </div>
 </main>
-<footer th:replace="fragments/footer"/>
+<footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>

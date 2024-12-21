@@ -61,7 +61,7 @@ public class ContractControllerImpl implements ContractController {
                 contractsPage.getTotalPages()
         );
 
-        LOG.log(Level.INFO, "Show list of Contracts for  " + principal.getName());
+        LOG.log(Level.INFO, "Show list of Contracts for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", form);
@@ -79,6 +79,7 @@ public class ContractControllerImpl implements ContractController {
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new ContractCreateForm(0, "", 0, LocalDate.now(), LocalDate.now()));
+
         return "contract-create";
     }
 
@@ -106,9 +107,10 @@ public class ContractControllerImpl implements ContractController {
                 form.contractEndDate()
         );
 
+        var id = contractService.addContract(dto);
+
         LOG.log(Level.INFO, "Create new Contract by " + principal.getName());
 
-        var id = contractService.addContract(dto);
         return "redirect:/contracts/" + id;
     }
 

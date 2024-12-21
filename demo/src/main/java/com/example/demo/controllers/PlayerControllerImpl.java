@@ -8,16 +8,22 @@ import com.example.demo.dto.PlayerDto;
 import com.example.demo.dto.api.AddPlayerDto;
 import com.example.demo.service.PlayerService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/players")
 public class PlayerControllerImpl implements PlayerController {
     private final PlayerService playerService;
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     @Autowired
     public PlayerControllerImpl(PlayerService playerService) {
@@ -31,7 +37,7 @@ public class PlayerControllerImpl implements PlayerController {
 
     @Override
     @GetMapping()
-    public String listPlayers(@ModelAttribute("form") SearchForm form, Model model) {
+    public String listPlayers(@ModelAttribute("form") SearchForm form, Model model, Principal principal) {
         var searchTerm = form.searchTerm() != null ? form.searchTerm() : "";
         var page = form.page() != null ? form.page() : 1;
         var size = form.size() != null ? form.size() : 3;
@@ -48,6 +54,8 @@ public class PlayerControllerImpl implements PlayerController {
                 playersPage.getTotalPages()
         );
 
+        LOG.log(Level.INFO, "Show list of Players for " + principal.getName());
+
         model.addAttribute("model", viewModel);
         model.addAttribute("form", form);
         return "player-list";
@@ -55,10 +63,12 @@ public class PlayerControllerImpl implements PlayerController {
 
     @Override
     @GetMapping("/create")
-    public String createPlayerForm(Model model) {
+    public String createPlayerForm(Model model, Principal principal) {
         var viewModel = new PlayerCreateViewModel(
                 createBaseViewModel("Создание игрока")
         );
+
+        LOG.log(Level.INFO, "Show Create Player Form for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         model.addAttribute("form", new PlayerCreateForm("", "", "", 17));
@@ -69,7 +79,8 @@ public class PlayerControllerImpl implements PlayerController {
     @PostMapping("/create")
     public String createPlayer(@Valid @ModelAttribute("form") PlayerCreateForm form,
                                BindingResult bindingResult,
-                               Model model) {
+                               Model model,
+                               Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new PlayerCreateViewModel(
@@ -82,20 +93,31 @@ public class PlayerControllerImpl implements PlayerController {
 
         AddPlayerDto dto = new AddPlayerDto(form.fullName(), form.height(), form.country(), form.age());
         var id = playerService.addPlayer(dto);
+
+        LOG.log(Level.INFO, "Create new Player by " + principal.getName());
+
         return "redirect:/players/" + id;
     }
 
     @Override
     @GetMapping("/edit/{id}")
-    public String editPlayerForm(int id, Model model) {
+    public String editPlayerForm(int id, Model model, Principal principal) {
         var player = playerService.getPlayer(id);
         var viewModel = new PlayerEditViewModel(
                 createBaseViewModel("Редактирование игрока")
         );
 
+        LOG.log(Level.INFO, "Show Edit Player Form for " + principal.getName());
+
         model.addAttribute("model", viewModel);
-        model.addAttribute("form", new PlayerEditForm(player.getId(), player.getFullName(), player.getAge(),
-                player.getHeight(), player.getCountry()));
+        model.addAttribute("form", new PlayerEditForm(
+                player.getId(),
+                player.getFullName(),
+                player.getAge(),
+                player.getHeight(),
+                player.getCountry()
+        ));
+
         return "player-edit";
     }
 
@@ -104,7 +126,8 @@ public class PlayerControllerImpl implements PlayerController {
     public String editPlayer(@PathVariable  int id,
                              @Valid @ModelAttribute("form") PlayerEditForm form,
                              BindingResult bindingResult,
-                             Model model) {
+                             Model model,
+                             Principal principal) {
 
         if (bindingResult.hasErrors()) {
             var viewModel = new PlayerEditViewModel(
@@ -117,17 +140,22 @@ public class PlayerControllerImpl implements PlayerController {
 
         PlayerDto dto = new PlayerDto(form.id(), form.fullName(), form.height(), form.country(), form.age());
         playerService.updatePlayer(dto);
+
+        LOG.log(Level.INFO, "Edit Player by " + principal.getName());
+
         return "redirect:/players/" + form.id();
     }
 
     @Override
     @GetMapping("/{id}")
-    public String playerDetails(@PathVariable int id, Model model) {
+    public String playerDetails(@PathVariable int id, Model model, Principal principal) {
         var p = playerService.getPlayer(id);
         var viewModel = new PlayerDetailsViewModel(
                 createBaseViewModel("Игрок"),
                 new PlayerViewModel(p.getId(), p.getFullName(), p.getAge(), p.getHeight(), p.getCountry())
         );
+
+        LOG.log(Level.INFO, "Show Player Details for " + principal.getName());
 
         model.addAttribute("model", viewModel);
         return "player-details";
